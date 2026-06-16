@@ -1524,25 +1524,49 @@ button { cursor: pointer; border: none; font-family: inherit; }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Sand Waterfall Transition Styles */
-.sand-transition {
+/* Silk Wave Transition Styles */
+.silk-transition {
   position: relative;
   width: 100%;
-  height: 180px;
-  background: linear-gradient(to bottom, #14281e 0%, var(--ivory) 100%);
+  height: 140px;
+  background: var(--ivory);
   overflow: hidden;
   z-index: 5;
   margin-top: -2px;
   margin-bottom: -2px;
 }
-#sandWaterfallCanvas {
-  position: absolute;
-  top: 0;
-  left: 0;
+.silk-transition svg {
   width: 100%;
   height: 100%;
   display: block;
 }
+
+/* Layer swaying animations for silk fabric effect */
+@keyframes waveFlow {
+  0% { transform: scaleY(1) translateY(0); }
+  50% { transform: scaleY(1.04) translateY(-2px) skewX(0.2deg); }
+  100% { transform: scaleY(1) translateY(0); }
+}
+.silk-wave-shadow {
+  transform-origin: top center;
+  animation: waveFlow 7s ease-in-out infinite alternate;
+}
+.silk-wave-gold {
+  transform-origin: top center;
+  animation: waveFlow 8s ease-in-out infinite alternate;
+  animation-delay: -2s;
+}
+.silk-wave-pattern {
+  transform-origin: top center;
+  animation: waveFlow 8s ease-in-out infinite alternate;
+  animation-delay: -2s;
+}
+.silk-wave-green {
+  transform-origin: top center;
+  animation: waveFlow 10s ease-in-out infinite alternate;
+  animation-delay: -4s;
+}
+
 #about .container {
   position: relative;
   z-index: 2;
@@ -1561,6 +1585,10 @@ button { cursor: pointer; border: none; font-family: inherit; }
   width: 100%;
   height: 100%;
   display: block;
+}
+.dune-back, .dune-middle, .dune-front {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
 }
 </style>
 </head>
@@ -1683,9 +1711,41 @@ button { cursor: pointer; border: none; font-family: inherit; }
   </div>
 </section>
 
-<!-- Sand Waterfall Transition -->
-<div class="sand-transition">
-  <canvas id="sandWaterfallCanvas"></canvas>
+<!-- Silk Wave Transition -->
+<div class="silk-transition">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Metallic Silk Gold Gradient -->
+      <linearGradient id="silk-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#C88015" />
+        <stop offset="25%" stop-color="#E8A030" />
+        <stop offset="50%" stop-color="#FFEAB0" />
+        <stop offset="75%" stop-color="#E8A030" />
+        <stop offset="100%" stop-color="#C88015" />
+      </linearGradient>
+      
+      <!-- Luxury traditional Uzbek geometric pattern overlay -->
+      <pattern id="uzbek-pattern" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
+        <path d="M 30 0 L 60 15 L 30 30 L 0 15 Z" fill="none" stroke="rgba(255,234,176,0.25)" stroke-width="1"/>
+        <path d="M 30 5 L 50 15 L 30 25 L 10 15 Z" fill="none" stroke="rgba(232,160,48,0.4)" stroke-width="0.8"/>
+        <circle cx="30" cy="15" r="2" fill="#E8A030" opacity="0.6"/>
+        <line x1="30" y1="0" x2="30" y2="30" stroke="rgba(255,234,176,0.15)" stroke-width="0.5"/>
+        <line x1="0" y1="15" x2="60" y2="15" stroke="rgba(255,234,176,0.15)" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    
+    <!-- Wave 1: Soft drop shadow underneath the trim -->
+    <path class="silk-wave-shadow" d="M0 0 L1440 0 L1440 96 C1080 136, 720 66, 0 106 Z" fill="rgba(0,0,0,0.18)" />
+    
+    <!-- Wave 2: Gold Silk border trim -->
+    <path class="silk-wave-gold" d="M0 0 L1440 0 L1440 90 C1080 130, 720 60, 0 100 Z" fill="url(#silk-gold)" />
+    
+    <!-- Wave 3: Pattern overlay to give gold trim embroidery look -->
+    <path class="silk-wave-pattern" d="M0 0 L1440 0 L1440 90 C1080 130, 720 60, 0 100 Z" fill="url(#uzbek-pattern)" />
+    
+    <!-- Wave 4: Deep green fabric (top layer) -->
+    <path class="silk-wave-green" d="M0 0 L1440 0 L1440 75 C1080 115, 720 45, 0 85 Z" fill="#14281e" />
+  </svg>
 </div>
 
 <!-- ================================================
@@ -1696,9 +1756,9 @@ button { cursor: pointer; border: none; font-family: inherit; }
   <div class="about-dune-bg">
     <svg viewBox="0 0 1440 350" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Dune 1 (Back) -->
-      <path d="M0 160 Q360 80 720 180 T1440 140 L1440 350 L0 350 Z" fill="#F0E8DD" opacity="0.6"/>
+      <path class="dune-back" d="M0 160 Q360 80 720 180 T1440 140 L1440 350 L0 350 Z" fill="#F0E8DD" opacity="0.6"/>
       <!-- Dune 2 (Middle) -->
-      <path d="M0 210 Q480 140 960 230 T1440 180 L1440 350 L0 350 Z" fill="#EAE0D1" opacity="0.8"/>
+      <path class="dune-middle" d="M0 210 Q480 140 960 230 T1440 180 L1440 350 L0 350 Z" fill="#EAE0D1" opacity="0.8"/>
       
       <!-- Camel Caravan walking on Dune 2 slope -->
       <g class="caravan" transform="translate(800, 145) scale(0.4)">
@@ -1717,7 +1777,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
       </g>
       
       <!-- Dune 3 (Front) -->
-      <path d="M0 260 Q540 200 1080 280 T1440 240 L1440 350 L0 350 Z" fill="#E4D9C7" opacity="0.95"/>
+      <path class="dune-front" d="M0 260 Q540 200 1080 280 T1440 240 L1440 350 L0 350 Z" fill="#E4D9C7" opacity="0.95"/>
     </svg>
   </div>
   <div class="container">
@@ -2973,13 +3033,39 @@ function handleFormSubmit(e) {
    ============================================ */
 const heroOrnament = document.querySelector('.hero-ornament');
 const heroBg = document.getElementById('heroBg');
+const duneBack = document.querySelector('.dune-back');
+const duneMiddle = document.querySelector('.dune-middle');
+const duneFront = document.querySelector('.dune-front');
+const caravan = document.querySelector('.caravan');
+const aboutSection = document.getElementById('about');
 
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
+  
+  // Hero Section Parallax
   if (scrolled < window.innerHeight) {
-    // Parallax translation for pattern and Silk Road backdrop
-    heroOrnament.style.transform = `translateY(${scrolled * 0.18}px)`;
-    heroBg.style.transform = `translateY(${scrolled * 0.38}px) scale(1.15)`;
+    if (heroOrnament) heroOrnament.style.transform = `translateY(${scrolled * 0.18}px)`;
+    if (heroBg) heroBg.style.transform = `translateY(${scrolled * 0.38}px) scale(1.15)`;
+  }
+  
+  // About Section Dune Parallax & Caravan Movement
+  if (aboutSection) {
+    const aboutRect = aboutSection.getBoundingClientRect();
+    if (aboutRect.top < window.innerHeight && aboutRect.bottom > 0) {
+      const scrollOffset = window.innerHeight - aboutRect.top;
+      
+      // Move dunes vertically at different speeds to create 3D depth
+      if (duneBack) duneBack.style.transform = `translateY(${scrollOffset * 0.04}px)`;
+      if (duneMiddle) duneMiddle.style.transform = `translateY(${scrollOffset * 0.08}px)`;
+      if (duneFront) duneFront.style.transform = `translateY(${scrollOffset * 0.12}px)`;
+      
+      // Caravan walking across the dunes horizontally
+      if (caravan) {
+        const walkingX = 800 - (scrollOffset * 0.35);
+        const clampedX = Math.max(-100, walkingX);
+        caravan.setAttribute('transform', `translate(${clampedX}, 145) scale(0.4)`);
+      }
+    }
   }
 });
 
@@ -3057,224 +3143,7 @@ if (canvas) {
   animateParticles();
 }
 
-// Sand Waterfall Transition Animation
-(function() {
-  const sandCanvas = document.getElementById('sandWaterfallCanvas');
-  if (!sandCanvas) return;
-
-  const sCtx = sandCanvas.getContext('2d');
-  let sandParticles = [];
-  let streams = [];
-  let sandHeights = new Float32Array(0);
-  const colors = [
-    'rgba(255, 234, 176, alpha)', // #FFEAB0
-    'rgba(245, 211, 128, alpha)', // #F5D380
-    'rgba(232, 160, 48, alpha)',  // #E8A030
-    'rgba(200, 128, 21, alpha)',  // #C88015
-    'rgba(229, 169, 60, alpha)'   // #E5A93C
-  ];
-
-  let mouse = { x: null, y: null, active: false };
-
-  // Track mouse coordinates relative to canvas
-  window.addEventListener('mousemove', (e) => {
-    const rect = sandCanvas.getBoundingClientRect();
-    if (e.clientX >= rect.left && e.clientX <= rect.right &&
-        e.clientY >= rect.top && e.clientY <= rect.bottom) {
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
-    } else {
-      mouse.active = false;
-    }
-  });
-
-  window.addEventListener('mouseleave', () => {
-    mouse.active = false;
-  });
-
-  function resizeSandCanvas() {
-    sandCanvas.width = sandCanvas.parentElement.offsetWidth;
-    sandCanvas.height = sandCanvas.parentElement.offsetHeight;
-    
-    // Resize sand heights array
-    const newHeights = new Float32Array(sandCanvas.width);
-    if (sandHeights.length > 0) {
-      const scaleX = sandCanvas.width / sandHeights.length;
-      for (let i = 0; i < sandCanvas.width; i++) {
-        const oldIdx = Math.floor(i / scaleX);
-        newHeights[i] = sandHeights[oldIdx] || 0;
-      }
-    }
-    sandHeights = newHeights;
-    initStreams();
-  }
-  window.addEventListener('resize', resizeSandCanvas);
-
-  function initStreams() {
-    streams = [];
-    const numStreams = Math.floor(sandCanvas.width / 75); // a stream every 75px on average
-    for (let i = 0; i < numStreams; i++) {
-      streams.push({
-        x: Math.random() * sandCanvas.width,
-        width: Math.random() * 12 + 6,
-        targetX: 0,
-        driftTimer: Math.random() * 100,
-        flowRate: Math.random() * 3 + 2 // particles per frame
-      });
-    }
-  }
-
-  class SandParticle {
-    constructor(x, y, isStream = true) {
-      this.x = x;
-      this.y = y;
-      this.size = Math.random() * 1.8 + 0.8; // fine sand sizes
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = isStream ? (Math.random() * 1.5 + 1.2) : (Math.random() * 0.8 + 0.8);
-      this.colorTemplate = colors[Math.floor(Math.random() * colors.length)];
-      this.alpha = 1;
-      this.phase = 'falling'; // 'falling' or 'settling'
-      this.life = 40 + Math.random() * 20;
-      this.maxLife = this.life;
-    }
-
-    update() {
-      if (this.phase === 'falling') {
-        // Accelerate downwards
-        this.vy += 0.08;
-        // Apply mouse deflection
-        if (mouse.active && mouse.x !== null) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 50) {
-            const force = (50 - dist) / 50;
-            this.vx += (dx / dist) * force * 1.5;
-            this.vy += (dy / dist) * force * 0.5;
-          }
-        }
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Collision with heights map
-        const colIndex = Math.floor(this.x);
-        if (colIndex >= 0 && colIndex < sandCanvas.width) {
-          const currentHeight = sandHeights[colIndex];
-          if (this.y >= sandCanvas.height - currentHeight - 5) {
-            this.phase = 'settling';
-            this.vy *= 0.1;
-            this.vx = (Math.random() - 0.5) * 1.5; // spread outward
-
-            // Deposit pile mass
-            const deposit = 0.25;
-            for (let offset = -4; offset <= 4; offset++) {
-              const idx = colIndex + offset;
-              if (idx >= 0 && idx < sandCanvas.width) {
-                const distWeight = (5 - Math.abs(offset)) / 5;
-                sandHeights[idx] += deposit * distWeight;
-              }
-            }
-          }
-        } else if (this.y >= sandCanvas.height) {
-          this.phase = 'settling';
-        }
-      } else {
-        // Settling phase: slide horizontal and fade out
-        this.x += this.vx;
-        this.y += this.vy;
-        this.vx *= 0.92;
-        this.vy *= 0.92;
-        this.life--;
-        this.alpha = Math.max(0, this.life / this.maxLife);
-      }
-    }
-
-    draw() {
-      sCtx.fillStyle = this.colorTemplate.replace('alpha', this.alpha.toFixed(2));
-      sCtx.beginPath();
-      sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      sCtx.fill();
-    }
-  }
-
-  function animateSand() {
-    sCtx.clearRect(0, 0, sandCanvas.width, sandCanvas.height);
-
-    // Decay and smooth the heights map (erosion filter)
-    if (sandHeights.length > 0) {
-      for (let i = 0; i < sandCanvas.width; i++) {
-        sandHeights[i] *= 0.985;
-        if (sandHeights[i] < 0.1) sandHeights[i] = 0;
-      }
-
-      const smoothHeights = new Float32Array(sandCanvas.width);
-      for (let i = 1; i < sandCanvas.width - 1; i++) {
-        smoothHeights[i] = sandHeights[i] * 0.8 + (sandHeights[i - 1] + sandHeights[i + 1]) * 0.1;
-      }
-      smoothHeights[0] = sandHeights[0] * 0.9 + sandHeights[1] * 0.1;
-      smoothHeights[sandCanvas.width - 1] = sandHeights[sandCanvas.width - 1] * 0.9 + sandHeights[sandCanvas.width - 2] * 0.1;
-      sandHeights = smoothHeights;
-    }
-
-    // Spawn particles
-    streams.forEach(stream => {
-      // Slowly drift the stream's source position for organic look
-      stream.driftTimer += 0.01;
-      stream.x += Math.sin(stream.driftTimer) * 0.2;
-      // Keep inside canvas bounds
-      if (stream.x < 0) stream.x = sandCanvas.width;
-      if (stream.x > sandCanvas.width) stream.x = 0;
-
-      for (let i = 0; i < stream.flowRate; i++) {
-        const px = stream.x + (Math.random() - 0.5) * stream.width;
-        const py = Math.random() * -10; // start slightly above canvas top
-        sandParticles.push(new SandParticle(px, py, true));
-      }
-    });
-
-    // Spawn ambient grains across screen
-    if (Math.random() < 0.45) {
-      const px = Math.random() * sandCanvas.width;
-      sandParticles.push(new SandParticle(px, -5, false));
-    }
-
-    // Update and draw particles
-    for (let i = sandParticles.length - 1; i >= 0; i--) {
-      const p = sandParticles[i];
-      p.update();
-      p.draw();
-
-      // Remove dead particles or out-of-bounds
-      if (p.y > sandCanvas.height || p.alpha <= 0 || p.x < 0 || p.x > sandCanvas.width) {
-        sandParticles.splice(i, 1);
-      }
-    }
-
-    // Draw sand pile
-    if (sandHeights.length > 0) {
-      sCtx.beginPath();
-      sCtx.moveTo(0, sandCanvas.height);
-      for (let i = 0; i < sandCanvas.width; i++) {
-        sCtx.lineTo(i, sandCanvas.height - sandHeights[i]);
-      }
-      sCtx.lineTo(sandCanvas.width, sandCanvas.height);
-      sCtx.closePath();
-
-      const pileGrad = sCtx.createLinearGradient(0, sandCanvas.height - 40, 0, sandCanvas.height);
-      pileGrad.addColorStop(0, 'rgba(255, 234, 176, 0.9)'); // light gold
-      pileGrad.addColorStop(0.5, 'rgba(232, 160, 48, 0.9)'); // amber gold
-      pileGrad.addColorStop(1, 'rgba(200, 128, 21, 0.95)'); // dark golden-brown
-      sCtx.fillStyle = pileGrad;
-      sCtx.fill();
-    }
-
-    setTimeout(animateSand, 16);
-  }
-
-  resizeSandCanvas();
-  animateSand();
-})();
+// Sand physics loop removed. Transition replaced by animated SVG wave.
 </script>
 </body>
 </html>
