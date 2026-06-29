@@ -422,33 +422,57 @@ button { cursor: pointer; border: none; font-family: inherit; }
   transform: scale(1.12) translateY(-2px);
 }
 .stat-number {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 800;
-  background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 60%, #C88015 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 3.6rem);
+  font-weight: 900;
+  color: #ffffff;
   line-height: 1;
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 0 20px rgba(232,160,48,0.9),
+    0 0 40px rgba(232,160,48,0.5),
+    0 0 80px rgba(232,160,48,0.25),
+    0 2px 4px rgba(0,0,0,0.4);
+  transition: text-shadow 0.3s ease;
+}
+.stat-item:hover .stat-number {
+  text-shadow:
+    0 0 25px rgba(255,234,176,1),
+    0 0 50px rgba(232,160,48,0.8),
+    0 0 100px rgba(232,160,48,0.4),
+    0 2px 4px rgba(0,0,0,0.4);
+}
+.stat-number .plus-sign {
+  font-size: 55%;
+  font-weight: 700;
+  color: #E8A030;
+  vertical-align: super;
+  text-shadow: 0 0 12px rgba(232,160,48,0.8);
+  margin-left: 1px;
+}
+.stat-divider {
+  width: 36px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(232,160,48,0.7), transparent);
+  margin: 8px auto 10px;
+  border-radius: 2px;
 }
 .stat-label {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.9);
-  margin-top: 2px;
-  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 700;
   font-family: 'Inter', 'Outfit', sans-serif;
 }
 .stat-desc {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.38);
-  margin-top: 5px;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 6px;
   letter-spacing: 0.01em;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 @keyframes statPop {
   0% { opacity: 0; transform: translateY(24px) scale(0.93); }
@@ -1794,7 +1818,8 @@ button { cursor: pointer; border: none; font-family: inherit; }
             <path d="M22 7 L25 9 L22 11 L21 10 L23.5 9 L21 8Z" fill="#FFFFFF" opacity="0.85"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="35">0</span>+</div>
+        <div class="stat-number"><span class="counter" data-target="35">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-divider"></div>
         <div class="stat-label">Countries Served</div>
         <div class="stat-desc">Active import partners across Europe, Asia & Middle East</div>
       </div>
@@ -1822,7 +1847,8 @@ button { cursor: pointer; border: none; font-family: inherit; }
             <path d="M2 8H6" stroke="#FF9800" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="10000">0</span>+</div>
+        <div class="stat-number"><span class="counter" data-target="10000">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-divider"></div>
         <div class="stat-label">Tons Exported</div>
         <div class="stat-desc">Fresh produce shipped globally every year</div>
       </div>
@@ -1849,7 +1875,8 @@ button { cursor: pointer; border: none; font-family: inherit; }
             <circle cx="9" cy="21" r="1" fill="#EF5350" opacity="0.5"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="20">0</span>+</div>
+        <div class="stat-number"><span class="counter" data-target="20">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-divider"></div>
         <div class="stat-label">Fruit Varieties</div>
         <div class="stat-desc">From apricots to pomegranates, melons & more</div>
       </div>
@@ -1871,7 +1898,8 @@ button { cursor: pointer; border: none; font-family: inherit; }
             <path d="M16 9L17.2 12.5H21L18 14.5L19.2 18L16 16L12.8 18L14 14.5L11 12.5H14.8Z" fill="#BA68C8" opacity="0.6"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
+        <div class="stat-number"><span class="counter" data-target="15">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-divider"></div>
         <div class="stat-label">Years of Excellence</div>
         <div class="stat-desc">Trusted exporter since 2009 — reliability built over time</div>
       </div>
