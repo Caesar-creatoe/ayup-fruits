@@ -341,40 +341,96 @@ button { cursor: pointer; border: none; font-family: inherit; }
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin-top: 80px;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 40px;
+  gap: 16px;
+  margin-top: 60px;
   padding-bottom: 50px;
 }
 .stat-item {
   text-align: center;
   position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(232,160,48,0.2);
+  border-radius: 20px;
+  padding: 28px 16px 24px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
 }
-.stat-item:not(:last-child)::after {
+.stat-item::before {
   content: '';
   position: absolute;
-  right: 0; top: 10%;
-  height: 80%;
-  width: 1px;
-  background: rgba(255,255,255,0.1);
+  inset: 0;
+  background: linear-gradient(135deg, rgba(232,160,48,0.06) 0%, rgba(255,234,176,0.03) 100%);
+  border-radius: 20px;
+  pointer-events: none;
+}
+.stat-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(232,160,48,0.15), 0 0 0 1px rgba(232,160,48,0.35);
+  border-color: rgba(232,160,48,0.45);
+}
+/* Top gold line accent */
+.stat-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(232,160,48,0.7), transparent);
+  border-radius: 0 0 2px 2px;
 }
 .stat-icon {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, rgba(232,160,48,0.15) 0%, rgba(200,128,21,0.1) 100%);
+  border: 1px solid rgba(232,160,48,0.3);
+  border-radius: 16px;
+  font-size: 1.6rem;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.stat-item:hover .stat-icon {
+  transform: scale(1.1) rotate(-3deg);
+}
+.stat-icon svg {
+  width: 28px;
+  height: 28px;
 }
 .stat-number {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 700;
-  color: var(--gold);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 50%, #C88015 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 .stat-label {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.55);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
   margin-top: 4px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
+@keyframes statPop {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.stat-item.visible {
+  animation: statPop 0.6s ease forwards;
+}
+.stat-item.visible:nth-child(1) { animation-delay: 0.05s; }
+.stat-item.visible:nth-child(2) { animation-delay: 0.15s; }
+.stat-item.visible:nth-child(3) { animation-delay: 0.25s; }
+.stat-item.visible:nth-child(4) { animation-delay: 0.35s; }
 
 /* ============================================
    ABOUT
@@ -1687,23 +1743,60 @@ button { cursor: pointer; border: none; font-family: inherit; }
       </div>
     </div>
     <div class="hero-stats">
+      <!-- Countries Served -->
       <div class="stat-item">
-        <div class="stat-icon">🌍</div>
+        <div class="stat-icon">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="11" stroke="#E8A030" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M14 3C14 3 10 8 10 14C10 20 14 25 14 25" stroke="#E8A030" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M14 3C14 3 18 8 18 14C18 20 14 25 14 25" stroke="#E8A030" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M3 14H25" stroke="#E8A030" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M4.5 9.5H23.5" stroke="#E8A030" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            <path d="M4.5 18.5H23.5" stroke="#E8A030" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
         <div class="stat-number"><span class="counter" data-target="35">0</span>+</div>
         <div class="stat-label">Countries Served</div>
       </div>
+      <!-- Tons Exported -->
       <div class="stat-item">
-        <div class="stat-icon">📦</div>
+        <div class="stat-icon">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="13" width="20" height="10" rx="2" stroke="#E8A030" stroke-width="1.5" fill="none"/>
+            <path d="M8 13V11C8 8.8 9.8 7 12 7H16C18.2 7 20 8.8 20 11V13" stroke="#E8A030" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M11 13V10.5" stroke="#E8A030" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            <path d="M17 13V10.5" stroke="#E8A030" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            <circle cx="9" cy="19" r="1.5" fill="#E8A030" opacity="0.7"/>
+            <circle cx="14" cy="19" r="1.5" fill="#E8A030" opacity="0.7"/>
+            <circle cx="19" cy="19" r="1.5" fill="#E8A030" opacity="0.7"/>
+            <path d="M4 17H24" stroke="#E8A030" stroke-width="0.8" opacity="0.3"/>
+          </svg>
+        </div>
         <div class="stat-number"><span class="counter" data-target="10000">0</span>+</div>
         <div class="stat-label">Tons Exported Annually</div>
       </div>
+      <!-- Products -->
       <div class="stat-item">
-        <div class="stat-icon">🌿</div>
+        <div class="stat-icon">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 4C12 4 9 6.5 9 10.5C9 13.5 11 16 14 17C17 16 19 13.5 19 10.5C19 6.5 16 4 14 4Z" stroke="#E8A030" stroke-width="1.5" fill="rgba(232,160,48,0.1)" stroke-linejoin="round"/>
+            <path d="M14 4V17" stroke="#E8A030" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+            <path d="M9 10.5C9 10.5 7 9 6 10.5C5 12 6 14 8 15" stroke="#E8A030" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M19 10.5C19 10.5 21 9 22 10.5C23 12 22 14 20 15" stroke="#E8A030" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M10 17C9 19 9 22 14 24C19 22 19 19 18 17" stroke="#E8A030" stroke-width="1.3" fill="rgba(232,160,48,0.08)" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div class="stat-number"><span class="counter" data-target="20">0</span>+</div>
         <div class="stat-label">Products in Our Range</div>
       </div>
+      <!-- Years of Experience -->
       <div class="stat-item">
-        <div class="stat-icon">⭐</div>
+        <div class="stat-icon">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 3L16.5 10H24L18 14.5L20.5 21.5L14 17L7.5 21.5L10 14.5L4 10H11.5Z" stroke="#E8A030" stroke-width="1.5" stroke-linejoin="round" fill="rgba(232,160,48,0.12)"/>
+            <circle cx="14" cy="14" r="3" fill="#E8A030" opacity="0.3"/>
+          </svg>
+        </div>
         <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
         <div class="stat-label">Years of Experience</div>
       </div>
@@ -2977,16 +3070,26 @@ function observeReveals() {
 observeReveals();
 
 /* ============================================
-   STATS COUNTER
+   STATS COUNTER + CARD ANIMATIONS
    ============================================ */
 let statsCounted = false;
 const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting && !statsCounted) {
       statsCounted = true;
+
+      // Trigger card pop-in animations
+      document.querySelectorAll('.stat-item').forEach((card, i) => {
+        card.style.opacity = '0';
+        setTimeout(() => {
+          card.classList.add('visible');
+        }, i * 100);
+      });
+
+      // Trigger number counters
       document.querySelectorAll('.counter').forEach(counter => {
         const target = parseInt(counter.dataset.target);
-        const duration = 2000;
+        const duration = 2200;
         const step = target / (duration / 16);
         let current = 0;
         const timer = setInterval(() => {
@@ -3001,10 +3104,16 @@ const statsObserver = new IntersectionObserver((entries) => {
       });
     }
   });
-}, { threshold: 0.3 });
+}, { threshold: 0.25 });
 
 const statsSection = document.querySelector('.hero-stats');
-if (statsSection) statsObserver.observe(statsSection);
+if (statsSection) {
+  // Set initial opacity to 0 so cards start hidden
+  document.querySelectorAll('.stat-item').forEach(card => {
+    card.style.opacity = '0';
+  });
+  statsObserver.observe(statsSection);
+}
 
 /* ============================================
    FORM SUBMIT
