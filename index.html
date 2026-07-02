@@ -1950,6 +1950,161 @@ button { cursor: pointer; border: none; font-family: inherit; }
   will-change: transform;
   transition: transform 0.1s ease-out;
 }
+
+/* ============================================
+   GOOGLE TRANSLATE CUSTOM BRANDING
+   ============================================ */
+/* Hide original Google Translate widget elements */
+.skiptranslate, #google_translate_element, .goog-te-banner-frame, .goog-te-balloon-frame {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+#goog-gt-tt, .goog-tooltip, .goog-tooltip:hover {
+  display: none !important;
+  visibility: hidden !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Custom Language Dropdown */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.lang-dropbtn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(232,160,48,0.3);
+  color: var(--white);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition);
+}
+.lang-dropbtn:hover {
+  background: rgba(232,160,48,0.12);
+  border-color: rgba(232,160,48,0.6);
+}
+.lang-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: #1e1e1e;
+  border: 1px solid rgba(232,160,48,0.25);
+  min-width: 150px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  border-radius: 12px;
+  z-index: 1000;
+  overflow: hidden;
+}
+.lang-dropdown-content a {
+  color: rgba(255,255,255,0.85);
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: left;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lang-dropdown-content a:hover {
+  background: rgba(232,160,48,0.15);
+  color: var(--gold);
+}
+.lang-dropdown:hover .lang-dropdown-content {
+  display: block;
+}
+
+/* First Entry Welcome Language Modal Overlay */
+.lang-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.lang-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.lang-modal-card {
+  background: #141414;
+  border: 1px solid rgba(232,160,48,0.3);
+  border-radius: 24px;
+  padding: 40px 30px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(232,160,48,0.1);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lang-modal-overlay.active .lang-modal-card {
+  transform: scale(1);
+}
+.lang-modal-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+.lang-modal-card h3 {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.lang-modal-card p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 30px;
+}
+.lang-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.lang-option-btn {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.lang-option-btn:hover {
+  background: rgba(232,160,48,0.15);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232,160,48,0.15);
+}
 </style>
 </head>
 <body>
@@ -1981,6 +2136,22 @@ button { cursor: pointer; border: none; font-family: inherit; }
       <a href="#quality">Quality</a>
       <a href="#how-we-work">How We Work</a>
       <a href="#contact">Contact</a>
+      
+      <!-- Custom Language Dropdown (Desktop) -->
+      <div class="lang-dropdown">
+        <button class="lang-dropbtn" aria-label="Select Language">
+          <span class="current-lang-flag">🇬🇧</span> <span class="current-lang-text">EN</span> <span style="font-size:0.6rem;opacity:0.8;">▼</span>
+        </button>
+        <div class="lang-dropdown-content">
+          <a href="javascript:void(0);" onclick="changeLang('en')">🇬🇧 English</a>
+          <a href="javascript:void(0);" onclick="changeLang('ru')">🇷🇺 Русский</a>
+          <a href="javascript:void(0);" onclick="changeLang('uz')">🇺🇿 O'zbekcha</a>
+          <a href="javascript:void(0);" onclick="changeLang('tr')">🇹🇷 Türkçe</a>
+          <a href="javascript:void(0);" onclick="changeLang('de')">🇩🇪 Deutsch</a>
+          <a href="javascript:void(0);" onclick="changeLang('zh-CN')">🇨🇳 中文</a>
+        </div>
+      </div>
+
       <a href="https://wa.me/4915215699662" class="nav-wa-btn" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.634-1.215A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.115 0-4.107-.628-5.764-1.707l-.413-.248-4.283 1.123 1.143-4.175-.272-.432A9.71 9.71 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/></svg>
         WhatsApp
@@ -2001,6 +2172,22 @@ button { cursor: pointer; border: none; font-family: inherit; }
   <a href="#quality" class="mobile-link">Quality</a>
   <a href="#how-we-work" class="mobile-link">How We Work</a>
   <a href="#contact" class="mobile-link">Contact</a>
+  
+  <!-- Custom Language Dropdown (Mobile) -->
+  <div class="lang-dropdown" style="margin: 15px 0 5px; width: 100%; text-align: center;">
+    <button class="lang-dropbtn" aria-label="Select Language" style="justify-content: center; width: 100%; max-width: 200px; margin: 0 auto;">
+      <span class="current-lang-flag">🇬🇧</span> <span class="current-lang-text">EN</span> <span style="font-size:0.6rem;opacity:0.8;">▼</span>
+    </button>
+    <div class="lang-dropdown-content" style="left: 50%; transform: translateX(-50%); width: 200px;">
+      <a href="javascript:void(0);" onclick="changeLang('en')">🇬🇧 English</a>
+      <a href="javascript:void(0);" onclick="changeLang('ru')">🇷🇺 Русский</a>
+      <a href="javascript:void(0);" onclick="changeLang('uz')">🇺🇿 O'zbekcha</a>
+      <a href="javascript:void(0);" onclick="changeLang('tr')">🇹🇷 Türkçe</a>
+      <a href="javascript:void(0);" onclick="changeLang('de')">🇩🇪 Deutsch</a>
+      <a href="javascript:void(0);" onclick="changeLang('zh-CN')">🇨🇳 中文</a>
+    </div>
+  </div>
+
   <a href="https://wa.me/4915215699662" class="nav-wa-btn" target="_blank" rel="noopener" style="margin-top: 10px;">
     WhatsApp Us
   </a>
@@ -3844,5 +4031,107 @@ if (canvas) {
 
 // Sand physics loop removed. Transition replaced by animated SVG wave.
 </script>
+
+<!-- Google Translate target element -->
+<div id="google_translate_element" style="display:none"></div>
+
+<!-- First Entry Welcome Language Modal Overlay -->
+<div class="lang-modal-overlay" id="langModalOverlay">
+  <div class="lang-modal-card">
+    <div class="lang-modal-logo">AyupFruits</div>
+    <h3>Select Language / Выберите язык</h3>
+    <p>Please select your preferred language for the website</p>
+    <div class="lang-options-grid">
+      <button class="lang-option-btn" onclick="changeLang('en')">🇬🇧 English</button>
+      <button class="lang-option-btn" onclick="changeLang('ru')">🇷🇺 Русский</button>
+      <button class="lang-option-btn" onclick="changeLang('uz')">🇺🇿 O'zbekcha</button>
+      <button class="lang-option-btn" onclick="changeLang('tr')">🇹🇷 Türkçe</button>
+      <button class="lang-option-btn" onclick="changeLang('de')">🇩🇪 Deutsch</button>
+      <button class="lang-option-btn" onclick="changeLang('zh-CN')">🇨🇳 中文</button>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+// Function to get cookie
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+// Function to set cookie
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  const domain = window.location.hostname.replace(/^www\./, '');
+  document.cookie = name + "=" + value + expires + "; path=/; domain=." + domain;
+  document.cookie = name + "=" + value + expires + "; path=/; domain=" + window.location.hostname;
+  document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+// Set language translation using Google Translate cookie
+function changeLang(langCode) {
+  // Clear any existing Google Translate cookies
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
+  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + window.location.hostname.replace(/^www\./, '');
+  
+  if (langCode !== 'en') {
+    setCookie('googtrans', `/en/${langCode}`, 30);
+  }
+  localStorage.setItem('user-lang', langCode);
+  
+  // Reload page to trigger translation
+  location.reload();
+}
+
+function updateNavFlag(lang) {
+  const flagMap = {
+    'en': { flag: '🇬🇧', text: 'EN' },
+    'ru': { flag: '🇷🇺', text: 'RU' },
+    'uz': { flag: '🇺🇿', text: 'UZ' },
+    'tr': { flag: '🇹🇷', text: 'TR' },
+    'de': { flag: '🇩🇪', text: 'DE' },
+    'zh-CN': { flag: '🇨🇳', text: 'ZH' }
+  };
+  
+  const current = flagMap[lang] || flagMap['en'];
+  document.querySelectorAll('.current-lang-flag').forEach(el => el.textContent = current.flag);
+  document.querySelectorAll('.current-lang-text').forEach(el => el.textContent = current.text);
+}
+
+// Initialize Language selection on load
+document.addEventListener("DOMContentLoaded", function() {
+  const userLang = localStorage.getItem('user-lang');
+  const modal = document.getElementById('langModalOverlay');
+  
+  if (!userLang) {
+    // Show modal if it's first visit
+    if (modal) {
+      setTimeout(() => {
+        modal.classList.add('active');
+      }, 800); // short elegant delay
+    }
+  } else {
+    // Update navbar indicators
+    updateNavFlag(userLang);
+  }
+});
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,ru,uz,tr,de,zh-CN',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
