@@ -3534,6 +3534,110 @@ const products = [
     shelflife: "12 months",
     peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     availableMonths: []
+  },
+  { 
+    name: "Dried Figs", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80",
+    caliber: "Grades: 5 – 12 pieces per 100g",
+    packaging: "5kg / 10kg cartons with inner vacuum bag",
+    temp: "+5°C to +15°C (ambient dry storage, <65% RH)",
+    capacity: "20 tons per dry FCL",
+    shelflife: "12 – 18 months",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Prunes", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1591073113125-e46713c829ed?w=600&q=80",
+    caliber: "Grades: 30/40 – 60/70 (pieces per 500g)",
+    packaging: "10kg cartons, inner food-grade polyethylene bag",
+    temp: "+5°C to +15°C (ambient dry storage)",
+    capacity: "21 tons per dry FCL",
+    shelflife: "12 months",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Dried Mulberry", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?w=600&q=80",
+    caliber: "White & Black Mulberry; whole dried",
+    packaging: "5kg / 10kg craft bags or cartons",
+    temp: "+5°C to +15°C (ambient dry storage, <60% RH)",
+    capacity: "18 tons per dry FCL",
+    shelflife: "12 months",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Walnuts", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1563412580953-3e397f85c4bc?w=600&q=80",
+    caliber: "In-shell: 28mm+ / Kernel: halves & quarters",
+    packaging: "25kg jute sacks (in-shell) / 10kg vacuum cartons (kernel)",
+    temp: "+5°C to +15°C (ambient dry, <60% RH)",
+    capacity: "20 tons per dry FCL",
+    shelflife: "18 – 24 months (in-shell)",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Dried Cherries", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=600&q=80",
+    caliber: "Pitted whole; moisture 18 – 22%",
+    packaging: "10kg cartons with inner polyethylene liner",
+    temp: "+5°C to +15°C (ambient dry storage)",
+    capacity: "20 tons per dry FCL",
+    shelflife: "12 months",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Pistachios", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1617454370414-b5b43af66832?w=600&q=80",
+    caliber: "In-shell: 18 – 25mm / Kernels: 0.6g – 1.2g each",
+    packaging: "25kg vacuum PP bags or 10kg export cartons",
+    temp: "+5°C to +15°C (dry, <55% RH)",
+    capacity: "18 tons per dry FCL",
+    shelflife: "24 months (in-shell)",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Almonds", 
+    tag: "Year-round", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1574570069877-04abf0116b63?w=600&q=80",
+    caliber: "In-shell & Blanched Kernel; Grades: 27/30 – 34/36",
+    packaging: "10kg cartons, double-layer PE bag",
+    temp: "+5°C to +10°C (dry, <55% RH)",
+    capacity: "20 tons per dry FCL",
+    shelflife: "24 months",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
+  },
+  { 
+    name: "Dried Fruits Gift Set", 
+    tag: "Year-round · Premium Mix", 
+    category: "dried", 
+    img: "https://images.unsplash.com/photo-1559181567-c3190ca9be23?w=600&q=80",
+    caliber: "Assorted mix: apricots, raisins, figs, prunes, walnuts, almonds",
+    packaging: "1kg / 2kg / 5kg branded gift boxes; custom labelling available",
+    temp: "+5°C to +15°C (ambient dry storage)",
+    capacity: "Custom retail pallet orders",
+    shelflife: "12 months",
+    peakMonths: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    availableMonths: []
   }
 ];
 
@@ -3693,14 +3797,41 @@ function openProductModal(name) {
   document.getElementById('modalSpecShelfLife').textContent = p.shelflife;
   document.getElementById('modalCtaProductName').textContent = p.name;
   
-  // Set video source
-  const videoName = p.name.toLowerCase()
-    .replace(' & raisins', '')
-    .replace(' & ', '_')
-    .replace(' ', '_');
+  // Set video source using lookup table
+  const videoMap = {
+    'cherry': 'cherry',
+    'apricot': 'apricot',
+    'grapes': 'grapes',
+    'melon': 'melon',
+    'watermelon': 'watermelon',
+    'pomegranate': 'pomegranate',
+    'peach': 'peach',
+    'nectarine': 'nectarine',
+    'plum': 'plum',
+    'pear': 'pear',
+    'apple': 'apple',
+    'quince': 'quince',
+    'lemon': 'lemon',
+    'persimmon': 'persimmon',
+    'fig': 'fig',
+    'onion': 'onion',
+    'tomato': 'tomato',
+    'cucumber': 'cucumber',
+    'bell pepper': 'bell_pepper',
+    'dried apricots & raisins': 'dried_apricots',
+    'dried figs': 'dried_figs',
+    'prunes': 'prunes',
+    'dried mulberry': 'dried_mulberry',
+    'walnuts': 'walnuts',
+    'dried cherries': 'dried_cherries',
+    'pistachios': 'pistachios',
+    'almonds': 'almonds',
+    'dried fruits gift set': 'dried_fruits_gift_set'
+  };
+  const videoKey = videoMap[p.name.toLowerCase()] || p.name.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_');
   const videoEl = document.getElementById('modalProductVideo');
   if (videoEl) {
-    videoEl.src = `videos/${videoName}.mp4`;
+    videoEl.src = `videos/${videoKey}.mp4`;
     videoEl.load();
     videoEl.play().catch(e => console.log("Autoplay blocked:", e));
   }
