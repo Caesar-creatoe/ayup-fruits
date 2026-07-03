@@ -1473,18 +1473,67 @@ button { cursor: pointer; border: none; font-family: inherit; }
 .modal-img-sec {
   position: relative;
   height: 100%;
-  min-height: 350px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
 }
 .modal-img-sec img {
   width: 100%;
+  height: 50%;
+  object-fit: cover;
+}
+.modal-video-container {
+  height: 50%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  border-top: 4px solid var(--gold);
+}
+.modal-video-container video {
+  width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+.modal-live-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(20,20,20,0.85);
+  color: #FFEAB0;
+  border: 1px solid var(--gold);
+  padding: 5px 10px;
+  font-size: 0.65rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 5;
+}
+.modal-live-dot {
+  width: 6px;
+  height: 6px;
+  background: #25D366;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulseLive 1.5s infinite;
+}
+@keyframes pulseLive {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
 }
 .modal-img-sec::after {
   content: '';
   position: absolute;
   inset: 0;
   border-right: 4px solid var(--gold);
+  pointer-events: none;
 }
 .modal-info-sec {
   padding: 40px;
@@ -1838,7 +1887,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
 }
 @media (max-width: 768px) {
   .modal-layout { grid-template-columns: 1fr; }
-  .modal-img-sec { min-height: 200px; height: 220px; }
+  .modal-img-sec { min-height: 380px; height: auto; }
   .modal-img-sec::after { border-right: none; border-bottom: 4px solid var(--gold); }
   .modal-info-sec { padding: 25px; }
   .wa-agent-selector { grid-template-columns: 1fr; gap: 12px; }
@@ -3148,6 +3197,13 @@ body {
     <div class="modal-layout">
       <div class="modal-img-sec">
         <img id="modalProductImg" src="" alt="Product image">
+        <div class="modal-video-container">
+          <video id="modalProductVideo" src="" autoplay muted loop playsinline></video>
+          <div class="modal-live-badge">
+            <span class="modal-live-dot"></span>
+            Warehouse &amp; Quality Live
+          </div>
+        </div>
       </div>
       <div class="modal-info-sec">
         <div class="modal-title-area">
@@ -3637,11 +3693,29 @@ function openProductModal(name) {
   document.getElementById('modalSpecShelfLife').textContent = p.shelflife;
   document.getElementById('modalCtaProductName').textContent = p.name;
   
+  // Set video source
+  const videoName = p.name.toLowerCase()
+    .replace(' & raisins', '')
+    .replace(' & ', '_')
+    .replace(' ', '_');
+  const videoEl = document.getElementById('modalProductVideo');
+  if (videoEl) {
+    videoEl.src = `videos/${videoName}.mp4`;
+    videoEl.load();
+    videoEl.play().catch(e => console.log("Autoplay blocked:", e));
+  }
+  
   productModal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeProductModal() {
+  const videoEl = document.getElementById('modalProductVideo');
+  if (videoEl) {
+    videoEl.pause();
+    videoEl.src = '';
+  }
+  
   productModal.classList.remove('open');
   document.body.style.overflow = '';
 }
