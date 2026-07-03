@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ayup Fruits — Premium Uzbek Fruits &amp; Vegetables for Global Importers</title>
 <meta name="description" content="Ayup Fruits exports premium fresh fruits, vegetables, and dried goods from Uzbekistan to wholesale importers across Europe, the Middle East, Russia, and Asia. Request a quote today.">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -107,15 +108,24 @@ button { cursor: pointer; border: none; font-family: inherit; }
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
-.nav-logo svg { width: 32px; height: 32px; }
+.nav-logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: height var(--transition);
+}
+#navbar.scrolled .nav-logo img {
+  height: 46px;
+}
 .nav-logo span {
   font-family: 'Playfair Display', serif;
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--gold);
   letter-spacing: 0.04em;
+  display: none;
 }
 .nav-links {
   display: flex;
@@ -2112,13 +2122,16 @@ body {
   transform: scale(1);
 }
 .lang-modal-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lang-modal-logo img {
+  height: 80px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 .lang-modal-card h3 {
   font-size: 1.1rem;
@@ -2167,18 +2180,8 @@ body {
 <nav id="navbar">
   <div class="container nav-inner">
     <a href="#hero" class="nav-logo">
-      <!-- Pomegranate SVG icon -->
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="22" r="14" fill="#E8A030"/>
-        <path d="M20 8 C20 8 18 4 20 2 C22 4 20 8 20 8Z" fill="#1A3C2E"/>
-        <path d="M20 8 C17 6 14 5 14 5" stroke="#1A3C2E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <circle cx="16" cy="20" r="2.5" fill="#C0392B" opacity="0.8"/>
-        <circle cx="22" cy="18" r="2.2" fill="#C0392B" opacity="0.7"/>
-        <circle cx="19" cy="25" r="2.3" fill="#C0392B" opacity="0.75"/>
-        <circle cx="24" cy="24" r="2" fill="#C0392B" opacity="0.65"/>
-        <circle cx="15" cy="26" r="1.8" fill="#C0392B" opacity="0.6"/>
-      </svg>
-      <span style="background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-family: 'Playfair Display', serif;">AyupFruits</span>
+      <img src="logo.png" alt="Ayup Fruits - Premium Uzbek Fruits & Vegetables">
+      <span>AyupFruits</span>
     </a>
     <div class="nav-links">
       <a href="#hero">Home</a>
@@ -3138,15 +3141,8 @@ body {
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#hero" class="nav-logo">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-            <circle cx="20" cy="22" r="14" fill="#E8A030"/>
-            <path d="M20 8 C20 8 18 4 20 2 C22 4 20 8 20 8Z" fill="#1A3C2E"/>
-            <path d="M20 8 C17 6 14 5 14 5" stroke="#1A3C2E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <circle cx="16" cy="20" r="2.5" fill="#C0392B" opacity="0.8"/>
-            <circle cx="22" cy="18" r="2.2" fill="#C0392B" opacity="0.7"/>
-            <circle cx="19" cy="25" r="2.3" fill="#C0392B" opacity="0.75"/>
-          </svg>
-          <span style="background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-family: 'Playfair Display', serif;">AyupFruits</span>
+          <img src="logo.png" alt="Ayup Fruits - Premium Uzbek Fruits & Vegetables">
+          <span>AyupFruits</span>
         </a>
         <p>Premium Uzbek Produce for the World</p>
       </div>
@@ -4282,7 +4278,7 @@ if (canvas) {
 <!-- First Entry Welcome Language Modal Overlay -->
 <div class="lang-modal-overlay" id="langModalOverlay">
   <div class="lang-modal-card">
-    <div class="lang-modal-logo">AyupFruits</div>
+    <div class="lang-modal-logo"><img src="logo.png" alt="Ayup Fruits Logo"></div>
     <h3>Select Language / Выберите язык</h3>
     <p>Please select your preferred language for the website</p>
     <div class="lang-options-grid">
