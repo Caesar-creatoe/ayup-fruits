@@ -108,24 +108,27 @@ button { cursor: pointer; border: none; font-family: inherit; }
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 .nav-logo img {
-  height: 56px;
+  height: 54px;
   width: auto;
   display: block;
   object-fit: contain;
   transition: height var(--transition);
 }
 #navbar.scrolled .nav-logo img {
-  height: 46px;
+  height: 44px;
 }
 .nav-logo span {
   font-family: 'Playfair Display', serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--gold);
+  font-size: 1.45rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #FFEAB0 0%, #E8A030 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: 0.04em;
-  display: none;
+  display: inline-block;
 }
 .nav-links {
   display: flex;
