@@ -2213,9 +2213,9 @@ body {
         </div>
       </div>
 
-      <a href="https://wa.me/4915215699662" class="nav-wa-btn" target="_blank" rel="noopener">
+      <a href="https://wa.me/4915215699662" class="nav-wa-btn" target="_blank" rel="noopener" title="EU Sales Office — Germany">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492l4.634-1.215A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-2.115 0-4.107-.628-5.764-1.707l-.413-.248-4.283 1.123 1.143-4.175-.272-.432A9.71 9.71 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/></svg>
-        WhatsApp
+        WhatsApp <span style="font-size:0.7em;opacity:0.7">(EU)</span>
       </a>
     </div>
     <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
@@ -2318,7 +2318,7 @@ body {
             <path d="M22 7 L25 9 L22 11 L21 10 L23.5 9 L21 8Z" fill="#FFFFFF" opacity="0.85"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="35">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-number"><span class="counter" data-target="35">35</span><span class="plus-sign">+</span></div>
         <div class="stat-divider"></div>
         <div class="stat-label">Countries Served</div>
         <div class="stat-desc">Active import partners across Europe, Asia & Middle East</div>
@@ -2347,7 +2347,7 @@ body {
             <path d="M2 8H6" stroke="#FF9800" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="10000">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-number"><span class="counter" data-target="10000">10,000</span><span class="plus-sign">+</span></div>
         <div class="stat-divider"></div>
         <div class="stat-label">Tons Exported</div>
         <div class="stat-desc">Fresh produce shipped globally every year</div>
@@ -2375,7 +2375,7 @@ body {
             <circle cx="9" cy="21" r="1" fill="#EF5350" opacity="0.5"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="20">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-number"><span class="counter" data-target="20">20</span><span class="plus-sign">+</span></div>
         <div class="stat-divider"></div>
         <div class="stat-label">Fruit Varieties</div>
         <div class="stat-desc">From apricots to pomegranates, melons & more</div>
@@ -2398,7 +2398,7 @@ body {
             <path d="M16 9L17.2 12.5H21L18 14.5L19.2 18L16 16L12.8 18L14 14.5L11 12.5H14.8Z" fill="#BA68C8" opacity="0.6"/>
           </svg>
         </div>
-        <div class="stat-number"><span class="counter" data-target="15">0</span><span class="plus-sign">+</span></div>
+        <div class="stat-number"><span class="counter" data-target="15">15</span><span class="plus-sign">+</span></div>
         <div class="stat-divider"></div>
         <div class="stat-label">Years of Excellence</div>
         <div class="stat-desc">Trusted exporter since 2009 — reliability built over time</div>
@@ -3177,9 +3177,9 @@ body {
         <h4>Contact Info</h4>
         <p>
           📧 <a href="mailto:ayupfruits@gmail.com" style="color:inherit;text-decoration:underline;">ayupfruits@gmail.com</a><br>
-          💬 WhatsApp: <a href="https://wa.me/4915215699662" style="color:inherit;text-decoration:underline;" target="_blank">+49 152 1569 9662</a><br>
+          💬 WhatsApp (EU Sales): <a href="https://wa.me/4915215699662" style="color:inherit;text-decoration:underline;" target="_blank">+49 152 1569 9662</a><br>
           ✈️ Telegram: @ayupfruits<br><br>
-          📍 Tashkent, Uzbekistan
+          📍 HQ: Tashkent, Uzbekistan
         </p>
       </div>
     </div>
@@ -4042,12 +4042,14 @@ const statsObserver = new IntersectionObserver((entries) => {
         }, i * 100);
       });
 
-      // Trigger number counters
+      // Trigger number counters — animate from 0 as visual effect
+      // (real values are already in HTML for SEO/no-JS fallback)
       document.querySelectorAll('.counter').forEach(counter => {
         const target = parseInt(counter.dataset.target);
         const duration = 2200;
         const step = target / (duration / 16);
         let current = 0;
+        counter.textContent = '0'; // reset for animation
         const timer = setInterval(() => {
           current += step;
           if (current >= target) {
