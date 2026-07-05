@@ -1131,3 +1131,102 @@ window.addEventListener('click', function(event) {
     });
   }
 });
+
+/* ============================================
+   GA4 CONVERSION TRACKING
+   ============================================ */
+
+// Safe gtag wrapper — silently skips if GA4 not loaded
+function trackEvent(eventName, params) {
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, params);
+  }
+}
+
+// ── 1. WhatsApp Click Tracking ─────────────────────────────────────
+// Covers: navbar btn, mobile menu btn, contact section cards, footer
+document.addEventListener('DOMContentLoaded', function() {
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      const href = this.href || '';
+      // Detect which number/department
+      let department = 'unknown';
+      if (href.includes('4915215699662'))   department = 'EU Sales (+49)';
+      if (href.includes('998901234567'))    department = 'Export Division';
+      if (href.includes('998907654321'))    department = 'CIS Russian Sales';
+      if (href.includes('998901112233'))    department = 'Logistics Desk';
+
+      trackEvent('whatsapp_click', {
+        event_category: 'Contact',
+        event_label: department,
+        value: 1
+      });
+    });
+  });
+
+  // ── 2. Request a Quote Button (Hero + Product Modal CTA) ───────────
+  document.querySelectorAll(
+    'a[href*="contact"], a[href*="#contact"], #modalCtaBtn, .btn-primary'
+  ).forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const label = this.textContent.trim().substring(0, 60);
+      trackEvent('request_quote_click', {
+        event_category: 'Lead',
+        event_label: label,
+        value: 5
+      });
+    });
+  });
+
+  // ── 3. Contact Form Submission ─────────────────────────────────────
+  const inquiryForm = document.getElementById('inquiryForm');
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', function() {
+      const product = (document.getElementById('productInterest') || {}).value || 'unknown';
+      trackEvent('form_submit', {
+        event_category: 'Lead',
+        event_label: 'Inquiry Form — ' + product,
+        value: 10
+      });
+    });
+  }
+
+  // ── 4. Product Modal View (B2B Specs) ──────────────────────────────
+  const _origOpenModal = window.openProductModal;
+  if (typeof _origOpenModal === 'function') {
+    window.openProductModal = function(name) {
+      _origOpenModal(name);
+      trackEvent('product_modal_view', {
+        event_category: 'Engagement',
+        event_label: name,
+        value: 1
+      });
+    };
+  }
+
+  // ── 5. Language Switch ─────────────────────────────────────────────
+  const _origChangeLang = window.changeLang;
+  if (typeof _origChangeLang === 'function') {
+    window.changeLang = function(langCode) {
+      trackEvent('language_switch', {
+        event_category: 'UI',
+        event_label: langCode
+      });
+      _origChangeLang(langCode);
+    };
+  }
+
+  // ── 6. Telegram Click ─────────────────────────────────────────────
+  document.querySelectorAll('a[href*="t.me"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      trackEvent('telegram_click', {
+        event_category: 'Contact',
+        event_label: 'Telegram @ayupfruits',
+        value: 1
+      });
+    });
+  });
+
+});
+
