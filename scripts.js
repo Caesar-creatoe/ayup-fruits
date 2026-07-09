@@ -1152,10 +1152,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const href = this.href || '';
       // Detect which number/department
       let department = 'unknown';
-      if (href.includes('4915215699662'))   department = 'EU Sales (+49)';
-      if (href.includes('998901234567'))    department = 'Export Division';
-      if (href.includes('998907654321'))    department = 'CIS Russian Sales';
-      if (href.includes('998901112233'))    department = 'Logistics Desk';
+      if (href.includes('4915215699662')) {
+        department = 'EU Sales (+49)';
+        if (href.includes('importing%20fruits') || href.includes('interested')) {
+          department = 'Export Division';
+        } else if (href.includes('%D0%B8%D0%BC%D0%BF%D0%BE%D1%80%D1%82') || href.includes('%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5') || href.includes('Здравствуйте') || href.includes('интересует')) {
+          department = 'CIS Russian Sales';
+        } else if (href.includes('customs') || href.includes('logistics')) {
+          department = 'Logistics Desk';
+        }
+      }
 
       trackEvent('whatsapp_click', {
         event_category: 'Contact',
