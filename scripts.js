@@ -14,6 +14,7 @@ const products = [
     name: "Cherry", 
     tag: "Seasonal · May–July", 
     category: "fruits", 
+    video: "videos/cherry_user.mp4",
     img: "https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=600&q=80",
     caliber: "26mm – 30mm+",
     packaging: "5kg wooden boxes, single row laid",
@@ -27,6 +28,7 @@ const products = [
     name: "Apricot", 
     tag: "Seasonal · June–August", 
     category: "fruits", 
+    video: "videos/apricot.mp4",
     img: "https://images.unsplash.com/photo-1592681814168-6df0fa93161b?w=600&q=80",
     caliber: "35mm – 45mm+",
     packaging: "4kg open-top cardboard cartons",
@@ -53,6 +55,7 @@ const products = [
     name: "Melon", 
     tag: "Seasonal · July–September", 
     category: "fruits", 
+    video: "videos/melon.mp4",
     img: "https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=600&q=80",
     caliber: "Torpedo / Mirza (3kg – 6kg per piece)",
     packaging: "Stacked in cushioned cardboard bulk bins",
@@ -92,6 +95,7 @@ const products = [
     name: "Peach", 
     tag: "Seasonal · June–August", 
     category: "fruits", 
+    video: "videos/peach_user.mp4",
     img: "https://images.unsplash.com/photo-1629828874514-c1e5103f2150?w=600&q=80",
     caliber: "60mm – 75mm average diameter",
     packaging: "4kg flat cartons, single layer trays",
@@ -144,6 +148,7 @@ const products = [
     name: "Apple", 
     tag: "Seasonal · August–November", 
     category: "fruits", 
+    video: "videos/apple_compressed.mp4",
     img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&q=80",
     caliber: "70mm – 85mm average diameter",
     packaging: "13kg – 18kg double-wall cartons",
@@ -170,6 +175,7 @@ const products = [
     name: "Lemon", 
     tag: "Year-round", 
     category: "fruits", 
+    video: "videos/lemon.mp4",
     img: "https://images.unsplash.com/photo-1590502593747-42a996133562?w=600&q=80",
     caliber: "55mm – 70mm average",
     packaging: "10kg wooden boxes or net carry-bags",
@@ -209,6 +215,7 @@ const products = [
     name: "Onion", 
     tag: "Year-round", 
     category: "vegetables", 
+    video: "videos/onion_user.mp4",
     img: "https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?w=600&q=80",
     caliber: "50mm – 80mm+ export grade",
     packaging: "25kg leno mesh bags on pallets",
@@ -235,6 +242,7 @@ const products = [
     name: "Cucumber", 
     tag: "Seasonal · May–September", 
     category: "vegetables", 
+    video: "videos/cucumber.mp4",
     img: "https://images.unsplash.com/photo-1604977042946-1eecc30f269e?w=600&q=80",
     caliber: "12cm – 18cm length grade",
     packaging: "8kg telescopic cardboard cartons",
@@ -261,6 +269,7 @@ const products = [
     name: "Dried Apricots & Raisins", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/dried_apricots.mp4",
     img: "https://images.unsplash.com/photo-1601368135477-472a330882a0?w=600&q=80",
     caliber: "Caliber Sizes 1 to 8 (Apricots)",
     packaging: "10kg cartons, inner blue plastic lining",
@@ -274,6 +283,7 @@ const products = [
     name: "Dried Figs", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/dried_figs.mp4",
     img: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=600&q=80",
     caliber: "Grades: 5 – 12 pieces per 100g",
     packaging: "5kg / 10kg cartons with inner vacuum bag",
@@ -300,6 +310,7 @@ const products = [
     name: "Dried Mulberry", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/dried_mulberry.mp4",
     img: "https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?w=600&q=80",
     caliber: "White & Black Mulberry; whole dried",
     packaging: "5kg / 10kg craft bags or cartons",
@@ -313,6 +324,7 @@ const products = [
     name: "Walnuts", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/walnuts.mp4",
     img: "https://images.unsplash.com/photo-1563412580953-3e397f85c4bc?w=600&q=80",
     caliber: "In-shell: 28mm+ / Kernel: halves & quarters",
     packaging: "25kg jute sacks (in-shell) / 10kg vacuum cartons (kernel)",
@@ -326,6 +338,7 @@ const products = [
     name: "Dried Cherries", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/dried_cherries.mp4",
     img: "https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=600&q=80",
     caliber: "Pitted whole; moisture 18 – 22%",
     packaging: "10kg cartons with inner polyethylene liner",
@@ -339,6 +352,7 @@ const products = [
     name: "Pistachios", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/pistachios.mp4",
     img: "https://images.unsplash.com/photo-1617454370414-b5b43af66832?w=600&q=80",
     caliber: "In-shell: 18 – 25mm / Kernels: 0.6g – 1.2g each",
     packaging: "25kg vacuum PP bags or 10kg export cartons",
@@ -352,6 +366,7 @@ const products = [
     name: "Almonds", 
     tag: "Year-round", 
     category: "dried", 
+    video: "videos/almonds.mp4",
     img: "https://images.unsplash.com/photo-1574570069877-04abf0116b63?w=600&q=80",
     caliber: "In-shell & Blanched Kernel; Grades: 27/30 – 34/36",
     packaging: "10kg cartons, double-layer PE bag",
@@ -365,6 +380,7 @@ const products = [
     name: "Dried Fruits Gift Set", 
     tag: "Year-round · Premium Mix", 
     category: "dried", 
+    video: "videos/dried_fruits_gift_set.mp4",
     img: "https://images.unsplash.com/photo-1559181567-c3190ca9be23?w=600&q=80",
     caliber: "Assorted mix: apricots, raisins, figs, prunes, walnuts, almonds",
     packaging: "1kg / 2kg / 5kg branded gift boxes; custom labelling available",
@@ -390,9 +406,13 @@ function renderProducts(filter = 'all') {
     const card = document.createElement('div');
     card.className = 'product-card reveal';
     card.style.transitionDelay = `${i * 0.05}s`;
+    const mediaHTML = p.video 
+      ? `<video src="${basePath}${p.video}" autoplay muted loop playsinline preload="metadata"></video>`
+      : `<img src="${p.img}" alt="${p.name} from Uzbekistan" loading="lazy">`;
+
     card.innerHTML = `
       <div class="product-card-img" onclick="openProductModal('${p.name}')">
-        <img src="${p.img}" alt="${p.name} from Uzbekistan" loading="lazy">
+        ${mediaHTML}
         <div class="product-card-overlay">
           <button class="inquire-btn" onclick="event.stopPropagation(); openProductModal('${p.name}')">View Specs</button>
         </div>
@@ -525,7 +545,26 @@ function openProductModal(name) {
   const p = products.find(prod => prod.name === name);
   if (!p) return;
   
-  document.getElementById('modalProductImg').src = p.img;
+  const imgEl = document.getElementById('modalProductImg');
+  const videoEl = document.getElementById('modalProductVideo');
+
+  if (p.video) {
+    imgEl.style.display = 'none';
+    if (videoEl) {
+      videoEl.style.display = 'block';
+      videoEl.src = `${basePath}${p.video}`;
+      videoEl.load();
+      videoEl.play().catch(e => console.log("Autoplay blocked:", e));
+    }
+  } else {
+    if (videoEl) {
+      videoEl.style.display = 'none';
+      videoEl.pause();
+    }
+    imgEl.style.display = 'block';
+    imgEl.src = p.img;
+  }
+
   document.getElementById('modalProductName').textContent = p.name;
   document.getElementById('modalProductSeason').textContent = p.tag;
   document.getElementById('modalSpecCaliber').textContent = p.caliber;
@@ -534,45 +573,6 @@ function openProductModal(name) {
   document.getElementById('modalSpecCapacity').textContent = p.capacity;
   document.getElementById('modalSpecShelfLife').textContent = p.shelflife;
   document.getElementById('modalCtaProductName').textContent = p.name;
-  
-  // Set video source using lookup table
-  const videoMap = {
-    'cherry': 'cherry',
-    'apricot': 'apricot',
-    'grapes': 'grapes',
-    'melon': 'melon',
-    'watermelon': 'watermelon',
-    'pomegranate': 'pomegranate',
-    'peach': 'peach',
-    'nectarine': 'nectarine',
-    'plum': 'plum',
-    'pear': 'pear',
-    'apple': 'apple',
-    'quince': 'quince',
-    'lemon': 'lemon',
-    'persimmon': 'persimmon',
-    'fig': 'fig',
-    'onion': 'onion',
-    'tomato': 'tomato',
-    'cucumber': 'cucumber',
-    'bell pepper': 'bell_pepper',
-    'dried apricots & raisins': 'dried_apricots',
-    'dried figs': 'dried_figs',
-    'prunes': 'prunes',
-    'dried mulberry': 'dried_mulberry',
-    'walnuts': 'walnuts',
-    'dried cherries': 'dried_cherries',
-    'pistachios': 'pistachios',
-    'almonds': 'almonds',
-    'dried fruits gift set': 'dried_fruits_gift_set'
-  };
-  const videoKey = videoMap[p.name.toLowerCase()] || p.name.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_');
-  const videoEl = document.getElementById('modalProductVideo');
-  if (videoEl) {
-    videoEl.src = `${basePath}videos/${videoKey}.mp4`;
-    videoEl.load();
-    videoEl.play().catch(e => console.log("Autoplay blocked:", e));
-  }
   
   if (productModal) {
     productModal.classList.add('open');
