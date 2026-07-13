@@ -1621,7 +1621,7 @@ function createWorldTradeMap(canvasId) {
   const wrapper = canvas.parentElement;
   const DPR = window.devicePixelRatio || 1;
   const W = wrapper.offsetWidth || 700;
-  const H = Math.round(W * 0.52);
+  const H = Math.round(W * 0.417);
   canvas.width  = W * DPR;
   canvas.height = H * DPR;
   canvas.style.width  = W + 'px';

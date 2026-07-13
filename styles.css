@@ -2584,17 +2584,20 @@ body {
 .world-map-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.92 / 1;
-  border-radius: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+  aspect-ratio: 2.4 / 1;
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(232,160,48,0.2);
+  border: 1px solid rgba(232,160,48,0.25);
   background: #0d1f17;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
 }
 .world-map-wrapper canvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
-  border-radius: 12px;
+  border-radius: 16px;
 }
 .map-tooltip {
   position: absolute;
