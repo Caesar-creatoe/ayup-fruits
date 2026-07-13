@@ -1613,8 +1613,8 @@ function selectInquiryType(type) {
 /* ============================================
    WORLD TRADE MAP — REAL CANVAS RENDERER
    ============================================ */
-function initWorldTradeMap() {
-  const canvas = document.getElementById('worldTradeMap');
+function createWorldTradeMap(canvasId) {
+  const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
   // Sizing
@@ -1666,7 +1666,6 @@ function initWorldTradeMap() {
       let moved = false;
       for (let i = 0; i < ring.length; i++) {
         const [px, py] = project(ring[i][0], ring[i][1]);
-        // Skip points way off screen to avoid rendering artifacts
         if (px < -W || px > W * 2 || py < -H || py > H * 2) { moved = false; continue; }
         if (!moved) { ctx.moveTo(px, py); moved = true; }
         else ctx.lineTo(px, py);
@@ -1681,12 +1680,17 @@ function initWorldTradeMap() {
     }
   }
 
-  let animId = null;
   let tick = 0;
   let worldData = null;
-  let topoLoaded = false;
-  let tooltip = document.getElementById('mapTooltip');
   let hovered = null;
+
+  // Per-canvas tooltip (unique element)
+  let tooltip = document.createElement('div');
+  tooltip.className = 'map-tooltip';
+  tooltip.style.display = 'none';
+  tooltip.style.position = 'absolute';
+  wrapper.style.position = 'relative';
+  wrapper.appendChild(tooltip);
 
   function drawFrame() {
     tick++;
@@ -1699,7 +1703,7 @@ function initWorldTradeMap() {
     ctx.fillStyle = oceanGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // --- Graticule (grid) ---
+    // --- Graticule ---
     ctx.save();
     ctx.strokeStyle = 'rgba(232,160,48,0.06)';
     ctx.lineWidth = 0.5;
@@ -1722,12 +1726,11 @@ function initWorldTradeMap() {
     ctx.restore();
 
     if (!worldData) {
-      // Loading indicator
       ctx.fillStyle = 'rgba(232,160,48,0.5)';
       ctx.font = '14px Inter, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Loading map data…', W / 2, H / 2);
-      animId = requestAnimationFrame(drawFrame);
+      ctx.fillText('Loading map…', W / 2, H / 2);
+      requestAnimationFrame(drawFrame);
       return;
     }
 
@@ -1739,7 +1742,6 @@ function initWorldTradeMap() {
       const isHov  = hovered && hovered.id === id;
 
       pathFeature(f);
-
       if (isHub) {
         ctx.fillStyle = 'rgba(232,160,48,0.55)';
       } else if (isSrc) {
@@ -1755,7 +1757,6 @@ function initWorldTradeMap() {
       ctx.stroke();
     });
 
-    // Hub + source coords
     const [hx, hy] = project(HUB_LNG, HUB_LAT);
 
     // --- Animated trade routes ---
@@ -1763,11 +1764,8 @@ function initWorldTradeMap() {
       const [sx, sy] = project(src.lng, src.lat);
       const speed = 0.8 + i * 0.07;
       const dashOff = -(tick * speed) % 16;
-
-      // Curved bezier route
       const cpx = (hx + sx) / 2 + (sy - hy) * 0.15;
       const cpy = (hy + sy) / 2 - Math.abs(hx - sx) * 0.18;
-
       ctx.beginPath();
       ctx.setLineDash([5, 4]);
       ctx.lineDashOffset = dashOff;
@@ -1783,8 +1781,6 @@ function initWorldTradeMap() {
     Object.values(SOURCING).forEach((src, i) => {
       const [sx, sy] = project(src.lng, src.lat);
       const pulse = (Math.sin(tick * 0.04 + i) * 0.5 + 0.5);
-
-      // Glow ring
       const grad = ctx.createRadialGradient(sx, sy, 2, sx, sy, 10 + pulse * 6);
       grad.addColorStop(0, 'rgba(255,234,176,0.6)');
       grad.addColorStop(1, 'rgba(232,160,48,0)');
@@ -1792,8 +1788,6 @@ function initWorldTradeMap() {
       ctx.arc(sx, sy, 10 + pulse * 6, 0, Math.PI * 2);
       ctx.fillStyle = grad;
       ctx.fill();
-
-      // Core dot
       ctx.beginPath();
       ctx.arc(sx, sy, 4.5, 0, Math.PI * 2);
       ctx.fillStyle = '#FFEAB0';
@@ -1803,9 +1797,8 @@ function initWorldTradeMap() {
       ctx.stroke();
     });
 
-    // --- Hub dot (Uzbekistan) ---
+    // --- Hub dot ---
     const pulse2 = Math.sin(tick * 0.06) * 0.5 + 0.5;
-    // Outer pulse ring
     ctx.beginPath();
     ctx.arc(hx, hy, 12 + pulse2 * 8, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(232,160,48,${0.12 * pulse2})`;
@@ -1818,8 +1811,6 @@ function initWorldTradeMap() {
     ctx.arc(hx, hy, 4, 0, Math.PI * 2);
     ctx.fillStyle = '#FFF8E7';
     ctx.fill();
-
-    // Hub label
     ctx.font = 'bold 10px Inter, sans-serif';
     ctx.fillStyle = '#E8A030';
     ctx.textAlign = 'center';
@@ -1828,51 +1819,39 @@ function initWorldTradeMap() {
     // --- Legend ---
     ctx.font = '10px Inter, sans-serif';
     ctx.textAlign = 'left';
-
-    ctx.beginPath();
-    ctx.arc(16, H - 16, 5, 0, Math.PI * 2);
-    ctx.fillStyle = '#E8A030';
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(16, H - 16, 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#E8A030'; ctx.fill();
     ctx.fillStyle = 'rgba(255,234,176,0.7)';
     ctx.fillText('Hub (Uzbekistan)', 26, H - 12);
-
-    ctx.beginPath();
-    ctx.arc(16, H - 34, 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = '#FFEAB0';
-    ctx.fill();
+    ctx.beginPath(); ctx.arc(16, H - 34, 4.5, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFEAB0'; ctx.fill();
     ctx.fillStyle = 'rgba(255,234,176,0.7)';
     ctx.fillText('Sourcing Region', 26, H - 30);
 
-    animId = requestAnimationFrame(drawFrame);
+    requestAnimationFrame(drawFrame);
   }
 
   // Hover detection
   canvas.addEventListener('mousemove', e => {
     if (!worldData) return;
-    const rect  = canvas.getBoundingClientRect();
-    const mx    = (e.clientX - rect.left);
-    const my    = (e.clientY - rect.top);
-
+    const rect = canvas.getBoundingClientRect();
+    const mx = (e.clientX - rect.left);
+    const my = (e.clientY - rect.top);
     let found = null;
-    // Check source dots first
     for (const [id, src] of Object.entries(SOURCING)) {
       const [sx, sy] = project(src.lng, src.lat);
-      const dx = mx - sx, dy = my - sy;
-      if (Math.sqrt(dx*dx + dy*dy) < 12) { found = { id: parseInt(id), src }; break; }
+      if (Math.sqrt((mx-sx)**2 + (my-sy)**2) < 12) { found = { id: parseInt(id), src }; break; }
     }
-    // Also hub
     const [hx, hy] = project(HUB_LNG, HUB_LAT);
-    if (Math.sqrt((mx-hx)**2 + (my-hy)**2) < 14) found = { id: HUB_ID, src: { name:'Uzbekistan', flag:'🇺🇿', products:'Export Hub' }};
-
+    if (Math.sqrt((mx-hx)**2 + (my-hy)**2) < 14)
+      found = { id: HUB_ID, src: { name:'Uzbekistan', flag:'🇺🇿', products:'Export Hub' } };
     hovered = found;
     if (found && tooltip) {
       tooltip.style.display = 'block';
-      tooltip.style.left    = (mx + 14) + 'px';
-      tooltip.style.top     = (my - 10) + 'px';
+      tooltip.style.left = (mx + 14) + 'px';
+      tooltip.style.top  = (my - 10) + 'px';
       tooltip.innerHTML = `<strong>${found.src.flag} ${found.src.name}</strong><br><span>${found.src.products || ''}</span>`;
-    } else if (tooltip) {
-      tooltip.style.display = 'none';
-    }
+    } else if (tooltip) { tooltip.style.display = 'none'; }
     canvas.style.cursor = found ? 'pointer' : 'default';
   });
   canvas.addEventListener('mouseleave', () => {
@@ -1880,33 +1859,49 @@ function initWorldTradeMap() {
     if (tooltip) tooltip.style.display = 'none';
   });
 
-  // Load topojson + world data from CDN
-  function loadScript(src, cb) {
-    const s = document.createElement('script');
-    s.src = src; s.onload = cb;
-    document.head.appendChild(s);
+  // Load TopoJSON + world data (shared between all instances)
+  if (window._worldMapData) {
+    worldData = window._worldMapData;
+    drawFrame();
+  } else {
+    function loadScript(src, cb) {
+      if (document.querySelector(`script[src="${src}"]`)) { cb(); return; }
+      const s = document.createElement('script');
+      s.src = src; s.onload = cb;
+      document.head.appendChild(s);
+    }
+    loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js', () => {
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+        .then(r => r.json())
+        .then(topo => {
+          window._worldMapData = topojson.feature(topo, topo.objects.countries);
+          worldData = window._worldMapData;
+          // Also init any other waiting canvases
+          document.querySelectorAll('canvas.trade-map-canvas').forEach(c => {
+            if (c.id !== canvasId && !c._mapStarted) {
+              c._mapStarted = true;
+              createWorldTradeMap(c.id);
+            }
+          });
+        })
+        .catch(err => console.warn('Map data failed:', err));
+    });
+    drawFrame();
   }
-
-  loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js', () => {
-    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
-      .then(r => r.json())
-      .then(topo => {
-        worldData = topojson.feature(topo, topo.objects.countries);
-        console.log('World map data loaded:', worldData.features.length, 'countries');
-      })
-      .catch(err => {
-        console.warn('Map data failed:', err);
-        // Fallback: draw without country data
-      });
-  });
-
-  // Start animation loop
-  drawFrame();
 }
 
-// Init when DOM ready
+// Legacy alias
+function initWorldTradeMap() { createWorldTradeMap('worldTradeMap'); }
+
+// Init when DOM ready — find all trade-map canvases
+function initAllTradeMaps() {
+  document.querySelectorAll('canvas.trade-map-canvas').forEach(c => {
+    createWorldTradeMap(c.id);
+  });
+}
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initWorldTradeMap);
+  document.addEventListener('DOMContentLoaded', initAllTradeMaps);
 } else {
-  setTimeout(initWorldTradeMap, 100);
+  setTimeout(initAllTradeMaps, 100);
 }
