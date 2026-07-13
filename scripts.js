@@ -1613,7 +1613,39 @@ function selectInquiryType(type) {
 /* ============================================
    WORLD TRADE MAP — REAL CANVAS RENDERER
    ============================================ */
-function createWorldTradeMap(canvasId) {
+
+// Import sourcing countries (for Verified Growers Worldwide map)
+const SOURCING_COUNTRIES = {
+  792: { name:'Turkey',       flag:'🇹🇷', lng:35.2,  lat:39.0, products:'Citrus, Figs, Cherries' },
+  818: { name:'Egypt',        flag:'🇪🇬', lng:30.8,  lat:26.8, products:'Citrus, Strawberries, Grapes' },
+  724: { name:'Spain',        flag:'🇪🇸', lng:-3.7,  lat:40.4, products:'Orange, Lemon, Strawberry' },
+  380: { name:'Italy',        flag:'🇮🇹', lng:12.5,  lat:41.9, products:'Kiwi, Apple, Pear' },
+  710: { name:'S. Africa',    flag:'🇿🇦', lng:25.1,  lat:-29.0,products:'Grapes, Citrus, Avocado' },
+  152: { name:'Chile',        flag:'🇨🇱', lng:-71.0, lat:-35.7,products:'Grapes, Kiwi, Berries' },
+  604: { name:'Peru',         flag:'🇵🇪', lng:-75.0, lat:-9.2, products:'Avocado, Blueberries' },
+  356: { name:'India',        flag:'🇮🇳', lng:78.9,  lat:22.0, products:'Mango, Pomegranate' },
+  156: { name:'China',        flag:'🇨🇳', lng:104.0, lat:35.5, products:'Pear, Apple, Mandarin' },
+  586: { name:'Pakistan',     flag:'🇵🇰', lng:67.0,  lat:30.4, products:'Mango, Kinnow, Dates' },
+};
+
+// Export destination countries (for Logistics map — Connecting Uzbek Orchards to 32+ Markets)
+const EXPORT_COUNTRIES = {
+  276: { name:'Germany',      flag:'🇩🇪', lng:10.4,  lat:51.2, products:'EU — Wholesale Hub' },
+  528: { name:'Netherlands',  flag:'🇳🇱', lng:5.3,   lat:52.1, products:'EU — Rotterdam Port' },
+  616: { name:'Poland',       flag:'🇵🇱', lng:19.0,  lat:52.2, products:'EU — Eastern Europe' },
+  826: { name:'UK',           flag:'🇬🇧', lng:-2.0,  lat:53.0, products:'Cherries, Apricots, Melons' },
+  643: { name:'Russia',       flag:'🇷🇺', lng:37.6,  lat:55.8, products:'CIS — Main Market' },
+  398: { name:'Kazakhstan',   flag:'🇰🇿', lng:71.4,  lat:51.2, products:'CIS — Rail Route' },
+  417: { name:'Kyrgyzstan',   flag:'🇰🇬', lng:74.7,  lat:42.9, products:'CIS — Daily Shipments' },
+  784: { name:'UAE',          flag:'🇦🇪', lng:54.4,  lat:24.0, products:'Middle East — Hub' },
+  682: { name:'Saudi Arabia', flag:'🇸🇦', lng:45.1,  lat:24.7, products:'Cherries, Figs, Melons' },
+  634: { name:'Qatar',        flag:'🇶🇦', lng:51.5,  lat:25.3, products:'Air Cargo — Premium' },
+  156: { name:'China',        flag:'🇨🇳', lng:104.0, lat:35.5, products:'East Asia — Rail Freight' },
+  410: { name:'South Korea',  flag:'🇰🇷', lng:127.0, lat:37.5, products:'East Asia — Air/Rail' },
+  392: { name:'Japan',        flag:'🇯🇵', lng:139.7, lat:35.7, products:'East Asia — Premium' },
+};
+
+function createWorldTradeMap(canvasId, customCountries) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
@@ -1629,19 +1661,8 @@ function createWorldTradeMap(canvasId) {
   const ctx = canvas.getContext('2d');
   ctx.scale(DPR, DPR);
 
-  // Sourcing country IDs (ISO numeric) + coordinates [lng, lat]
-  const SOURCING = {
-    792: { name:'Turkey',       flag:'🇹🇷', lng:35.2,  lat:39.0, products:'Citrus, Figs, Cherries' },
-    818: { name:'Egypt',        flag:'🇪🇬', lng:30.8,  lat:26.8, products:'Citrus, Strawberries, Grapes' },
-    724: { name:'Spain',        flag:'🇪🇸', lng:-3.7,  lat:40.4, products:'Orange, Lemon, Strawberry' },
-    380: { name:'Italy',        flag:'🇮🇹', lng:12.5,  lat:41.9, products:'Kiwi, Apple, Pear' },
-    710: { name:'S. Africa',    flag:'🇿🇦', lng:25.1,  lat:-29.0,products:'Grapes, Citrus, Avocado' },
-    152: { name:'Chile',        flag:'🇨🇱', lng:-71.0, lat:-35.7,products:'Grapes, Kiwi, Berries' },
-    604: { name:'Peru',         flag:'🇵🇪', lng:-75.0, lat:-9.2, products:'Avocado, Blueberries' },
-    356: { name:'India',        flag:'🇮🇳', lng:78.9,  lat:22.0, products:'Mango, Pomegranate' },
-    156: { name:'China',        flag:'🇨🇳', lng:104.0, lat:35.5, products:'Pear, Apple, Mandarin' },
-    586: { name:'Pakistan',     flag:'🇵🇰', lng:67.0,  lat:30.4, products:'Mango, Kinnow, Dates' },
-  };
+  // Use provided countries or default to sourcing
+  const SOURCING = customCountries || SOURCING_COUNTRIES;
   const HUB_ID  = 860; // Uzbekistan
   const HUB_LNG = 63.0, HUB_LAT = 41.5;
 
@@ -1893,10 +1914,19 @@ function createWorldTradeMap(canvasId) {
 // Legacy alias
 function initWorldTradeMap() { createWorldTradeMap('worldTradeMap'); }
 
-// Init when DOM ready — find all trade-map canvases
+// Init when DOM ready — each canvas gets the right country dataset
 function initAllTradeMaps() {
+  // Export destination maps (Logistics section + Quality page)
+  const EXPORT_CANVAS_IDS = ['worldTradeMapLogistics', 'worldTradeMapQuality'];
+
   document.querySelectorAll('canvas.trade-map-canvas').forEach(c => {
-    createWorldTradeMap(c.id);
+    if (EXPORT_CANVAS_IDS.includes(c.id)) {
+      // Logistics / Quality maps → show EXPORT destination countries
+      createWorldTradeMap(c.id, EXPORT_COUNTRIES);
+    } else {
+      // Verified Growers Worldwide → show IMPORT sourcing countries (default)
+      createWorldTradeMap(c.id, SOURCING_COUNTRIES);
+    }
   });
 }
 
