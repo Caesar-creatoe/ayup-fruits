@@ -1609,3 +1609,304 @@ function selectInquiryType(type) {
     if (hiddenInput) hiddenInput.value = type;
   }
 }
+
+/* ============================================
+   WORLD TRADE MAP — REAL CANVAS RENDERER
+   ============================================ */
+function initWorldTradeMap() {
+  const canvas = document.getElementById('worldTradeMap');
+  if (!canvas) return;
+
+  // Sizing
+  const wrapper = canvas.parentElement;
+  const DPR = window.devicePixelRatio || 1;
+  const W = wrapper.offsetWidth || 700;
+  const H = Math.round(W * 0.52);
+  canvas.width  = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(DPR, DPR);
+
+  // Sourcing country IDs (ISO numeric) + coordinates [lng, lat]
+  const SOURCING = {
+    792: { name:'Turkey',       flag:'🇹🇷', lng:35.2,  lat:39.0, products:'Citrus, Figs, Cherries' },
+    818: { name:'Egypt',        flag:'🇪🇬', lng:30.8,  lat:26.8, products:'Citrus, Strawberries, Grapes' },
+    724: { name:'Spain',        flag:'🇪🇸', lng:-3.7,  lat:40.4, products:'Orange, Lemon, Strawberry' },
+    380: { name:'Italy',        flag:'🇮🇹', lng:12.5,  lat:41.9, products:'Kiwi, Apple, Pear' },
+    710: { name:'S. Africa',    flag:'🇿🇦', lng:25.1,  lat:-29.0,products:'Grapes, Citrus, Avocado' },
+    152: { name:'Chile',        flag:'🇨🇱', lng:-71.0, lat:-35.7,products:'Grapes, Kiwi, Berries' },
+    604: { name:'Peru',         flag:'🇵🇪', lng:-75.0, lat:-9.2, products:'Avocado, Blueberries' },
+    356: { name:'India',        flag:'🇮🇳', lng:78.9,  lat:22.0, products:'Mango, Pomegranate' },
+    156: { name:'China',        flag:'🇨🇳', lng:104.0, lat:35.5, products:'Pear, Apple, Mandarin' },
+    586: { name:'Pakistan',     flag:'🇵🇰', lng:67.0,  lat:30.4, products:'Mango, Kinnow, Dates' },
+  };
+  const HUB_ID  = 860; // Uzbekistan
+  const HUB_LNG = 63.0, HUB_LAT = 41.5;
+
+  // Mercator projection fitted to canvas
+  const SCALE = W / (2 * Math.PI) * 0.95;
+  const OFFSET_X = W / 2;
+  const OFFSET_Y = H / 2 + H * 0.08;
+
+  function project(lng, lat) {
+    const x = SCALE * (lng * Math.PI / 180) + OFFSET_X;
+    const latR = lat * Math.PI / 180;
+    const y = -SCALE * Math.log(Math.tan(Math.PI / 4 + latR / 2)) + OFFSET_Y;
+    return [x, y];
+  }
+
+  // GeoJSON path renderer
+  function pathFeature(feature) {
+    if (!feature || !feature.geometry) return;
+    const geom = feature.geometry;
+    const drawRing = (ring) => {
+      if (!ring.length) return;
+      let moved = false;
+      for (let i = 0; i < ring.length; i++) {
+        const [px, py] = project(ring[i][0], ring[i][1]);
+        // Skip points way off screen to avoid rendering artifacts
+        if (px < -W || px > W * 2 || py < -H || py > H * 2) { moved = false; continue; }
+        if (!moved) { ctx.moveTo(px, py); moved = true; }
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+    };
+    ctx.beginPath();
+    if (geom.type === 'Polygon') {
+      geom.coordinates.forEach(drawRing);
+    } else if (geom.type === 'MultiPolygon') {
+      geom.coordinates.forEach(poly => poly.forEach(drawRing));
+    }
+  }
+
+  let animId = null;
+  let tick = 0;
+  let worldData = null;
+  let topoLoaded = false;
+  let tooltip = document.getElementById('mapTooltip');
+  let hovered = null;
+
+  function drawFrame() {
+    tick++;
+    ctx.clearRect(0, 0, W, H);
+
+    // --- Ocean ---
+    const oceanGrad = ctx.createLinearGradient(0, 0, 0, H);
+    oceanGrad.addColorStop(0, '#0a1a10');
+    oceanGrad.addColorStop(1, '#0d2218');
+    ctx.fillStyle = oceanGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    // --- Graticule (grid) ---
+    ctx.save();
+    ctx.strokeStyle = 'rgba(232,160,48,0.06)';
+    ctx.lineWidth = 0.5;
+    for (let lat = -80; lat <= 80; lat += 20) {
+      ctx.beginPath();
+      for (let lng = -180; lng <= 180; lng += 2) {
+        const [px, py] = project(lng, lat);
+        lng === -180 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+    }
+    for (let lng = -180; lng <= 180; lng += 30) {
+      ctx.beginPath();
+      for (let lat = -85; lat <= 85; lat += 2) {
+        const [px, py] = project(lng, lat);
+        lat === -85 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    if (!worldData) {
+      // Loading indicator
+      ctx.fillStyle = 'rgba(232,160,48,0.5)';
+      ctx.font = '14px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Loading map data…', W / 2, H / 2);
+      animId = requestAnimationFrame(drawFrame);
+      return;
+    }
+
+    // --- Countries ---
+    worldData.features.forEach(f => {
+      const id = parseInt(f.id);
+      const isSrc  = !!SOURCING[id];
+      const isHub  = id === HUB_ID;
+      const isHov  = hovered && hovered.id === id;
+
+      pathFeature(f);
+
+      if (isHub) {
+        ctx.fillStyle = 'rgba(232,160,48,0.55)';
+      } else if (isSrc) {
+        ctx.fillStyle = isHov ? 'rgba(232,160,48,0.55)' : 'rgba(232,160,48,0.28)';
+      } else {
+        ctx.fillStyle = isHov ? 'rgba(45,100,70,0.9)' : '#1a3c2e';
+      }
+      ctx.fill();
+
+      ctx.strokeStyle = 'rgba(232,160,48,0.12)';
+      ctx.lineWidth = 0.4;
+      pathFeature(f);
+      ctx.stroke();
+    });
+
+    // Hub + source coords
+    const [hx, hy] = project(HUB_LNG, HUB_LAT);
+
+    // --- Animated trade routes ---
+    Object.values(SOURCING).forEach((src, i) => {
+      const [sx, sy] = project(src.lng, src.lat);
+      const speed = 0.8 + i * 0.07;
+      const dashOff = -(tick * speed) % 16;
+
+      // Curved bezier route
+      const cpx = (hx + sx) / 2 + (sy - hy) * 0.15;
+      const cpy = (hy + sy) / 2 - Math.abs(hx - sx) * 0.18;
+
+      ctx.beginPath();
+      ctx.setLineDash([5, 4]);
+      ctx.lineDashOffset = dashOff;
+      ctx.strokeStyle = 'rgba(232,160,48,0.45)';
+      ctx.lineWidth = 1.2;
+      ctx.moveTo(hx, hy);
+      ctx.quadraticCurveTo(cpx, cpy, sx, sy);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    });
+
+    // --- Source dots ---
+    Object.values(SOURCING).forEach((src, i) => {
+      const [sx, sy] = project(src.lng, src.lat);
+      const pulse = (Math.sin(tick * 0.04 + i) * 0.5 + 0.5);
+
+      // Glow ring
+      const grad = ctx.createRadialGradient(sx, sy, 2, sx, sy, 10 + pulse * 6);
+      grad.addColorStop(0, 'rgba(255,234,176,0.6)');
+      grad.addColorStop(1, 'rgba(232,160,48,0)');
+      ctx.beginPath();
+      ctx.arc(sx, sy, 10 + pulse * 6, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(sx, sy, 4.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFEAB0';
+      ctx.fill();
+      ctx.strokeStyle = '#E8A030';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // --- Hub dot (Uzbekistan) ---
+    const pulse2 = Math.sin(tick * 0.06) * 0.5 + 0.5;
+    // Outer pulse ring
+    ctx.beginPath();
+    ctx.arc(hx, hy, 12 + pulse2 * 8, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(232,160,48,${0.12 * pulse2})`;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(hx, hy, 8, 0, Math.PI * 2);
+    ctx.fillStyle = '#E8A030';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(hx, hy, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFF8E7';
+    ctx.fill();
+
+    // Hub label
+    ctx.font = 'bold 10px Inter, sans-serif';
+    ctx.fillStyle = '#E8A030';
+    ctx.textAlign = 'center';
+    ctx.fillText('🇺🇿 Uzbekistan', hx, hy + 22);
+
+    // --- Legend ---
+    ctx.font = '10px Inter, sans-serif';
+    ctx.textAlign = 'left';
+
+    ctx.beginPath();
+    ctx.arc(16, H - 16, 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#E8A030';
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,234,176,0.7)';
+    ctx.fillText('Hub (Uzbekistan)', 26, H - 12);
+
+    ctx.beginPath();
+    ctx.arc(16, H - 34, 4.5, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFEAB0';
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,234,176,0.7)';
+    ctx.fillText('Sourcing Region', 26, H - 30);
+
+    animId = requestAnimationFrame(drawFrame);
+  }
+
+  // Hover detection
+  canvas.addEventListener('mousemove', e => {
+    if (!worldData) return;
+    const rect  = canvas.getBoundingClientRect();
+    const mx    = (e.clientX - rect.left);
+    const my    = (e.clientY - rect.top);
+
+    let found = null;
+    // Check source dots first
+    for (const [id, src] of Object.entries(SOURCING)) {
+      const [sx, sy] = project(src.lng, src.lat);
+      const dx = mx - sx, dy = my - sy;
+      if (Math.sqrt(dx*dx + dy*dy) < 12) { found = { id: parseInt(id), src }; break; }
+    }
+    // Also hub
+    const [hx, hy] = project(HUB_LNG, HUB_LAT);
+    if (Math.sqrt((mx-hx)**2 + (my-hy)**2) < 14) found = { id: HUB_ID, src: { name:'Uzbekistan', flag:'🇺🇿', products:'Export Hub' }};
+
+    hovered = found;
+    if (found && tooltip) {
+      tooltip.style.display = 'block';
+      tooltip.style.left    = (mx + 14) + 'px';
+      tooltip.style.top     = (my - 10) + 'px';
+      tooltip.innerHTML = `<strong>${found.src.flag} ${found.src.name}</strong><br><span>${found.src.products || ''}</span>`;
+    } else if (tooltip) {
+      tooltip.style.display = 'none';
+    }
+    canvas.style.cursor = found ? 'pointer' : 'default';
+  });
+  canvas.addEventListener('mouseleave', () => {
+    hovered = null;
+    if (tooltip) tooltip.style.display = 'none';
+  });
+
+  // Load topojson + world data from CDN
+  function loadScript(src, cb) {
+    const s = document.createElement('script');
+    s.src = src; s.onload = cb;
+    document.head.appendChild(s);
+  }
+
+  loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js', () => {
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json')
+      .then(r => r.json())
+      .then(topo => {
+        worldData = topojson.feature(topo, topo.objects.countries);
+        console.log('World map data loaded:', worldData.features.length, 'countries');
+      })
+      .catch(err => {
+        console.warn('Map data failed:', err);
+        // Fallback: draw without country data
+      });
+  });
+
+  // Start animation loop
+  drawFrame();
+}
+
+// Init when DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initWorldTradeMap);
+} else {
+  setTimeout(initWorldTradeMap, 100);
+}

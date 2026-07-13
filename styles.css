@@ -2577,3 +2577,45 @@ body {
   .inquiry-type-btns { flex-direction: column; align-items: center; }
   .sourcing-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* ============================================
+   WORLD TRADE MAP — CANVAS STYLES
+   ============================================ */
+.world-map-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.92 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(232,160,48,0.2);
+  background: #0d1f17;
+}
+.world-map-wrapper canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 12px;
+}
+.map-tooltip {
+  position: absolute;
+  background: rgba(10,25,15,0.92);
+  border: 1px solid rgba(232,160,48,0.5);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  color: #FFEAB0;
+  pointer-events: none;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.map-tooltip strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+.map-tooltip span {
+  color: rgba(255,234,176,0.65);
+  font-size: 0.76rem;
+}

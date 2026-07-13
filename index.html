@@ -578,76 +578,10 @@
 
         <div class="sourcing-map-container">
           <div class="sourcing-map-badge">VERIFIED GROWERS WORLDWIDE</div>
-          <svg class="world-trade-map" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
-            <!-- Map background -->
-            <rect width="800" height="450" fill="#0d1f17" rx="12"/>
-            <!-- Grid lines -->
-            <line x1="0" y1="225" x2="800" y2="225" stroke="#E8A030" stroke-width="0.3" opacity="0.3"/>
-            <line x1="400" y1="0" x2="400" y2="450" stroke="#E8A030" stroke-width="0.3" opacity="0.3"/>
-            <!-- Simplified world landmasses -->
-            <!-- Europe -->
-            <path d="M340 90 Q360 80 385 85 Q400 88 405 100 Q410 115 395 120 Q375 125 355 115 Q340 108 340 90Z" fill="#1a3c2e" stroke="#E8A030" stroke-width="0.8" opacity="0.9"/>
-            <!-- Asia -->
-            <path d="M405 80 Q450 70 520 75 Q570 78 600 95 Q630 112 620 135 Q600 155 560 150 Q510 148 470 135 Q430 122 410 105 Q400 95 405 80Z" fill="#1a3c2e" stroke="#E8A030" stroke-width="0.8" opacity="0.9"/>
-            <!-- Africa -->
-            <path d="M345 140 Q370 130 390 145 Q410 160 408 200 Q405 240 385 260 Q360 275 340 255 Q318 235 320 195 Q322 158 345 140Z" fill="#1a3c2e" stroke="#E8A030" stroke-width="0.8" opacity="0.9"/>
-            <!-- Americas -->
-            <path d="M100 90 Q130 80 155 95 Q170 110 165 140 Q160 175 140 180 Q120 178 105 160 Q88 138 100 90Z" fill="#1a3c2e" stroke="#E8A030" stroke-width="0.8" opacity="0.9"/>
-            <path d="M115 195 Q140 185 155 200 Q168 220 162 260 Q155 300 130 315 Q105 320 95 295 Q85 265 95 230 Q105 205 115 195Z" fill="#1a3c2e" stroke="#E8A030" stroke-width="0.8" opacity="0.9"/>
-            <!-- Australia -->
-            <path d="M580 230 Q620 215 650 228 Q670 242 660 265 Q645 282 615 280 Q588 272 582 252 Q578 238 580 230Z" fill="#1a3c2e" stroke="#E8A030" stroke-width="0.8" opacity="0.9"/>
-
-            <!-- Uzbekistan hub (central) -->
-            <circle cx="500" cy="108" r="8" fill="#E8A030" opacity="0.9"/>
-            <circle cx="500" cy="108" r="14" fill="none" stroke="#E8A030" stroke-width="1.5" opacity="0.5">
-              <animate attributeName="r" values="8;20;8" dur="2s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.9;0;0.9" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <text x="500" y="128" text-anchor="middle" fill="#E8A030" font-size="9" font-family="Arial" opacity="0.9">🇺🇿 Uzbekistan</text>
-
-            <!-- Source nodes with animated trade routes -->
-            <!-- Turkey -->
-            <circle cx="405" cy="105" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="405" y1="105" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.5">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="1s" repeatCount="indefinite"/>
-            </line>
-            <!-- Egypt -->
-            <circle cx="388" cy="158" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="388" y1="158" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.5">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.2s" repeatCount="indefinite"/>
-            </line>
-            <!-- Spain -->
-            <circle cx="343" cy="100" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="343" y1="100" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.5">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="0.9s" repeatCount="indefinite"/>
-            </line>
-            <!-- India -->
-            <circle cx="528" cy="148" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="528" y1="148" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.5">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.1s" repeatCount="indefinite"/>
-            </line>
-            <!-- South Africa -->
-            <circle cx="368" cy="258" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="368" y1="258" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.45">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.4s" repeatCount="indefinite"/>
-            </line>
-            <!-- Chile -->
-            <circle cx="140" cy="275" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="140" y1="275" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.4">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="1.6s" repeatCount="indefinite"/>
-            </line>
-            <!-- China -->
-            <circle cx="580" cy="110" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <line x1="580" y1="110" x2="500" y2="108" stroke="#E8A030" stroke-width="1" stroke-dasharray="4 3" opacity="0.5">
-              <animate attributeName="stroke-dashoffset" values="0;-14" dur="0.8s" repeatCount="indefinite"/>
-            </line>
-
-            <!-- Legend -->
-            <circle cx="30" cy="420" r="5" fill="#E8A030"/>
-            <text x="42" y="424" fill="#FFEAB0" font-size="10" font-family="Arial" opacity="0.8">Hub / Distribution</text>
-            <circle cx="180" cy="420" r="5" fill="#FFEAB0" opacity="0.8"/>
-            <text x="192" y="424" fill="#FFEAB0" font-size="10" font-family="Arial" opacity="0.8">Sourcing Region</text>
-          </svg>
+          <div class="world-map-wrapper">
+            <canvas id="worldTradeMap" style="width:100%;height:100%;border-radius:12px;display:block;"></canvas>
+            <div class="map-tooltip" id="mapTooltip" style="display:none;"></div>
+          </div>
           <p class="map-caption">Verified sourcing partners across Europe, Asia, Africa &amp; Americas</p>
         </div>
       </div>
