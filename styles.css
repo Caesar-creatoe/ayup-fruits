@@ -395,7 +395,6 @@ button { cursor: pointer; border: none; font-family: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: screen;
 }
 /* Hover lift for icon */
 .stat-item:hover .stat-icon {
