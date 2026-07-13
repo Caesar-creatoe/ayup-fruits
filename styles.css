@@ -2208,6 +2208,9 @@ body {
 .region-products { font-size: 0.73rem; color: rgba(255,255,255,0.55); }
 .sourcing-map-container {
   position: relative;
+  max-width: 720px;
+  width: 100%;
+  margin: 16px auto 0;
 }
 .sourcing-map-badge {
   background: rgba(232,160,48,0.15);

@@ -78,7 +78,13 @@
 .logistics-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 50px;
+  gap: 40px;
+}
+.logistics-layout .world-map-wrapper {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  aspect-ratio: 2.4 / 1;
 }
 
 /* ── Premium Map Container ─────────────────── */
