@@ -1432,7 +1432,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
 .modal-container {
   background: var(--white);
   width: 100%;
-  max-width: 850px;
+  max-width: 960px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -1470,43 +1470,41 @@ button { cursor: pointer; border: none; font-family: inherit; }
 }
 .modal-layout {
   display: grid;
-  grid-template-columns: 1.15fr 1.2fr;
+  grid-template-columns: 1.2fr 1fr;
   width: 100%;
+  min-height: 540px;
 }
-.modal-img-sec {
-  position: relative;
-  height: 100%;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-}
-.modal-img-sec img {
-  width: 100%;
-  height: 50%;
-  object-fit: cover;
-}
-.modal-video-container {
-  height: 50%;
-  width: 100%;
+/* NEW: Single unified media panel — full height left side */
+.modal-media-panel {
   position: relative;
   overflow: hidden;
-  background: #000;
-  border-top: 4px solid var(--gold);
+  background: #111;
+  border-right: 4px solid var(--gold);
+  min-height: 500px;
 }
-.modal-video-container video {
+.modal-media-panel video,
+.modal-media-panel img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+.modal-media-panel img {
+  z-index: 1;
+}
+.modal-media-panel video {
+  z-index: 2;
+}
 .modal-live-badge {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
+  bottom: 16px;
+  left: 16px;
   background: rgba(20,20,20,0.85);
   color: #FFEAB0;
   border: 1px solid var(--gold);
-  padding: 5px 10px;
+  padding: 6px 12px;
   font-size: 0.65rem;
   border-radius: 4px;
   font-weight: 700;
@@ -1531,12 +1529,9 @@ button { cursor: pointer; border: none; font-family: inherit; }
   50% { transform: scale(1.2); opacity: 1; }
   100% { transform: scale(0.9); opacity: 0.6; }
 }
-.modal-img-sec::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-right: 4px solid var(--gold);
-  pointer-events: none;
+/* Hide video element when no video source */
+.modal-media-panel video[src=""] {
+  display: none;
 }
 .modal-info-sec {
   padding: 40px;
@@ -1750,8 +1745,7 @@ button { cursor: pointer; border: none; font-family: inherit; }
 /* Responsive Overrides */
 @media (max-width: 768px) {
   .modal-layout { grid-template-columns: 1fr; }
-  .modal-img-sec { min-height: 380px; height: auto; }
-  .modal-img-sec::after { border-right: none; border-bottom: 4px solid var(--gold); }
+  .modal-media-panel { min-height: 280px; height: 280px; }
   .modal-info-sec { padding: 25px; }
   .wa-agent-selector { grid-template-columns: 1fr; gap: 12px; }
 }
