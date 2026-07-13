@@ -1715,6 +1715,12 @@ function createWorldTradeMap(canvasId, customCountries) {
 
   function drawFrame() {
     tick++;
+
+    // Pick up world data the moment any canvas loads it globally
+    if (!worldData && window._worldMapData) {
+      worldData = window._worldMapData;
+    }
+
     ctx.clearRect(0, 0, W, H);
 
     // --- Ocean ---
@@ -1897,13 +1903,7 @@ function createWorldTradeMap(canvasId, customCountries) {
         .then(topo => {
           window._worldMapData = topojson.feature(topo, topo.objects.countries);
           worldData = window._worldMapData;
-          // Also init any other waiting canvases
-          document.querySelectorAll('canvas.trade-map-canvas').forEach(c => {
-            if (c.id !== canvasId && !c._mapStarted) {
-              c._mapStarted = true;
-              createWorldTradeMap(c.id);
-            }
-          });
+          // Other canvases pick up _worldMapData automatically via their drawFrame loop
         })
         .catch(err => console.warn('Map data failed:', err));
     });

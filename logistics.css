@@ -7,7 +7,6 @@
   background: linear-gradient(180deg, #f8f5ee 0%, #f3ede0 40%, #f8f5ee 100%);
   padding: 100px 0 120px;
   position: relative;
-  overflow: hidden;
 }
 #logistics::before {
   content: '';
@@ -83,8 +82,10 @@
 .logistics-layout .world-map-wrapper {
   max-width: 760px;
   width: 100%;
-  margin: 0 auto;
+  margin: 8px auto 0;
   aspect-ratio: 2.4 / 1;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 /* ── Premium Map Container ─────────────────── */
