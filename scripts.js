@@ -11,6 +11,8 @@ const basePath = (function() {
    ============================================ */
 const products = [
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Cherry", 
     tag: "Seasonal · May–July", 
     category: "fruits", 
@@ -25,6 +27,8 @@ const products = [
     availableMonths: [5, 7]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Apricot", 
     tag: "Seasonal · June–August", 
     category: "fruits", 
@@ -39,6 +43,8 @@ const products = [
     availableMonths: [8]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Grapes", 
     tag: "Seasonal · August–October", 
     category: "fruits", 
@@ -53,6 +59,8 @@ const products = [
     availableMonths: [8]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Melon", 
     tag: "Seasonal · July–September", 
     category: "fruits", 
@@ -67,6 +75,8 @@ const products = [
     availableMonths: [7]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Watermelon", 
     tag: "Seasonal · June–September", 
     category: "fruits", 
@@ -81,6 +91,8 @@ const products = [
     availableMonths: [6, 9]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Pomegranate", 
     tag: "Seasonal · September–November", 
     category: "fruits", 
@@ -95,6 +107,8 @@ const products = [
     availableMonths: [9]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Peach", 
     tag: "Seasonal · June–August", 
     category: "fruits", 
@@ -109,6 +123,8 @@ const products = [
     availableMonths: [6]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Nectarine", 
     tag: "Seasonal · June–August", 
     category: "fruits", 
@@ -122,6 +138,8 @@ const products = [
     availableMonths: [6]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Plum", 
     tag: "Seasonal · July–September", 
     category: "fruits", 
@@ -136,6 +154,8 @@ const products = [
     availableMonths: [7, 9]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Pear", 
     tag: "Seasonal · August–October", 
     category: "fruits", 
@@ -149,6 +169,8 @@ const products = [
     availableMonths: [8, 10]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Apple", 
     tag: "Seasonal · August–November", 
     category: "fruits", 
@@ -163,6 +185,8 @@ const products = [
     availableMonths: [8, 11]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Quince", 
     tag: "Seasonal · September–November", 
     category: "fruits", 
@@ -176,6 +200,8 @@ const products = [
     availableMonths: [9, 11]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Lemon", 
     tag: "Year-round", 
     category: "fruits", 
@@ -190,6 +216,8 @@ const products = [
     availableMonths: [3, 4, 5, 6, 7, 8, 9]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Persimmon", 
     tag: "Seasonal · October–December", 
     category: "fruits", 
@@ -203,6 +231,8 @@ const products = [
     availableMonths: [12]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Fig", 
     tag: "Seasonal · July–September", 
     category: "fruits", 
@@ -216,6 +246,8 @@ const products = [
     availableMonths: [7, 9]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Onion", 
     tag: "Year-round", 
     category: "vegetables", 
@@ -230,6 +262,8 @@ const products = [
     availableMonths: [1, 2, 3, 4, 5, 6, 7, 11, 12]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Tomato", 
     tag: "Seasonal · June–October", 
     category: "vegetables", 
@@ -244,6 +278,8 @@ const products = [
     availableMonths: [6, 10]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Cucumber", 
     tag: "Seasonal · May–September", 
     category: "vegetables", 
@@ -258,6 +294,8 @@ const products = [
     availableMonths: [5, 9]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Bell Pepper", 
     tag: "Seasonal · June–October", 
     category: "vegetables", 
@@ -272,6 +310,8 @@ const products = [
     availableMonths: [6, 10]
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Dried Apricots & Raisins", 
     tag: "Year-round", 
     category: "dried", 
@@ -285,6 +325,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Dried Figs", 
     tag: "Year-round", 
     category: "dried", 
@@ -298,6 +340,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Dried Mulberry", 
     tag: "Year-round", 
     category: "dried", 
@@ -311,6 +355,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Walnuts", 
     tag: "Year-round", 
     category: "dried", 
@@ -325,6 +371,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Dried Cherries", 
     tag: "Year-round", 
     category: "dried", 
@@ -338,6 +386,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Pistachios", 
     tag: "Year-round", 
     category: "dried", 
@@ -351,6 +401,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Almonds", 
     tag: "Year-round", 
     category: "dried", 
@@ -364,6 +416,8 @@ const products = [
     availableMonths: []
   },
   { 
+    type: "export",
+    origin: "🇺🇿 Uzbekistan",
     name: "Dried Fruits Gift Set", 
     tag: "Year-round · Premium Mix", 
     category: "dried", 
@@ -377,6 +431,163 @@ const products = [
     availableMonths: []
   }
 ];
+/* ============================================
+   IMPORT PRODUCTS DATA
+   ============================================ */
+const importProducts = [
+  {
+    type: "import",
+    origin: "🇪🇨 Ecuador / Colombia",
+    name: "Banana",
+    tag: "Year-round",
+    category: "tropical",
+    img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&q=80",
+    caliber: "Grade A: 7-9 inch / Extra: 9+ inch",
+    packaging: "18.14kg cartons (standard export)",
+    temp: "+13°C to +14°C (90-95% RH)",
+    capacity: "24 tons per Reefer FCL",
+    shelflife: "21 – 28 days (green)",
+    moq: "1 FCL (24 tons)",
+    certifications: "GlobalG.A.P., HACCP, Rainforest Alliance"
+  },
+  {
+    type: "import",
+    origin: "🇮🇳 India / 🇵🇰 Pakistan",
+    name: "Mango",
+    tag: "Seasonal · March–September",
+    category: "tropical",
+    img: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&q=80",
+    caliber: "Grade 1: 250–350g / Grade 2: 350–500g",
+    packaging: "4kg / 5kg cardboard trays",
+    temp: "+10°C to +13°C (90% RH)",
+    capacity: "20 tons per Reefer FCL",
+    shelflife: "14 – 21 days",
+    moq: "1 ton",
+    certifications: "Phytosanitary, APEDA Certified"
+  },
+  {
+    type: "import",
+    origin: "🇪🇬 Egypt / 🇪🇸 Spain",
+    name: "Orange",
+    tag: "Seasonal · November–April",
+    category: "citrus",
+    img: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80",
+    caliber: "48 / 56 / 64 / 72 count",
+    packaging: "15kg mesh bags or 10kg cartons",
+    temp: "+7°C to +10°C (90% RH)",
+    capacity: "22 tons per Reefer FCL",
+    shelflife: "45 – 60 days",
+    moq: "500kg",
+    certifications: "GlobalG.A.P., Phytosanitary"
+  },
+  {
+    type: "import",
+    origin: "🇨🇱 Chile / 🇿🇦 South Africa",
+    name: "Table Grape (Import)",
+    tag: "Seasonal · October–April",
+    category: "berries",
+    img: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&q=80",
+    caliber: "Globe / Seedless 18mm+",
+    packaging: "4.5kg cartons, individual punnets",
+    temp: "-1°C to +1°C (92% RH)",
+    capacity: "21 tons per Reefer FCL",
+    shelflife: "45 – 60 days",
+    moq: "1 ton",
+    certifications: "GlobalG.A.P., HACCP, BRC"
+  },
+  {
+    type: "import",
+    origin: "🇵🇪 Peru / 🇰🇪 Kenya",
+    name: "Avocado",
+    tag: "Year-round",
+    category: "tropical",
+    img: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=600&q=80",
+    caliber: "Size 12 / 14 / 16 / 18 / 20",
+    packaging: "4kg cartons, single layer",
+    temp: "+5°C to +7°C (90% RH)",
+    capacity: "20 tons per Reefer FCL",
+    shelflife: "28 – 35 days (firm)",
+    moq: "500kg",
+    certifications: "GlobalG.A.P., Rainforest Alliance, HACCP"
+  },
+  {
+    type: "import",
+    origin: "🇮🇹 Italy / 🇨🇱 Chile",
+    name: "Kiwi",
+    tag: "Seasonal · April–November",
+    category: "berries",
+    img: "https://images.unsplash.com/photo-1618897996318-5a901fa6ca71?w=600&q=80",
+    caliber: "Hayward: size 27 / 33 / 39 / 42",
+    packaging: "3.5kg / 4kg trays",
+    temp: "-0.5°C to +0.5°C (95% RH)",
+    capacity: "22 tons per Reefer FCL",
+    shelflife: "3 – 6 months",
+    moq: "500kg",
+    certifications: "GlobalG.A.P., BRC"
+  },
+  {
+    type: "import",
+    origin: "🇪🇬 Egypt / 🇪🇸 Spain",
+    name: "Strawberry",
+    tag: "Seasonal · December–May",
+    category: "berries",
+    img: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&q=80",
+    caliber: "Grade A: 25–35mm / Extra: 35mm+",
+    packaging: "250g / 500g punnets, 4-8kg flats",
+    temp: "+0°C to +2°C (90-95% RH)",
+    capacity: "Air freight or reefer truck",
+    shelflife: "7 – 10 days",
+    moq: "200kg",
+    certifications: "GlobalG.A.P., HACCP"
+  },
+  {
+    type: "import",
+    origin: "🇸🇦 Saudi Arabia / 🇦🇪 UAE",
+    name: "Dates (Medjool)",
+    tag: "Year-round",
+    category: "exotic",
+    img: "https://images.unsplash.com/photo-1619623954949-1aca31a600a4?w=600&q=80",
+    caliber: "Jumbo (30-40g) / Large (20-30g)",
+    packaging: "5kg / 10kg premium gift boxes",
+    temp: "+0°C to +5°C (ambient dry storage)",
+    capacity: "20 tons per dry FCL",
+    shelflife: "12 months",
+    moq: "200kg",
+    certifications: "HACCP, ISO 22000"
+  },
+  {
+    type: "import",
+    origin: "🇨🇳 China / 🇹🇭 Thailand",
+    name: "Lychee",
+    tag: "Seasonal · May–August",
+    category: "exotic",
+    img: "https://images.unsplash.com/photo-1629213568830-a6c0b36e3b3e?w=600&q=80",
+    caliber: "Brewster / Mauritius: 20–30g each",
+    packaging: "4kg / 5kg mesh bags or cartons",
+    temp: "+2°C to +4°C (92% RH)",
+    capacity: "18 tons per Reefer FCL",
+    shelflife: "14 – 21 days",
+    moq: "500kg",
+    certifications: "Phytosanitary, HACCP"
+  },
+  {
+    type: "import",
+    origin: "🇹🇷 Turkey / 🇬🇷 Greece",
+    name: "Fig (Import)",
+    tag: "Seasonal · July–October",
+    category: "exotic",
+    img: "https://images.unsplash.com/photo-1635341814161-d696d538542c?w=600&q=80",
+    caliber: "35mm – 55mm; Brown Turkey / Kadota",
+    packaging: "1.5kg / 3kg trays",
+    temp: "+0°C to +2°C (90% RH)",
+    capacity: "Air cargo or reefer truck",
+    shelflife: "7 – 12 days",
+    moq: "200kg",
+    certifications: "GlobalG.A.P., Phytosanitary"
+  }
+];
+
+
 
 /* ============================================
    RENDER CATALOG GRID & MODAL TRIGGER
@@ -402,6 +613,7 @@ function renderProducts(filter = 'all') {
         <div class="product-card-overlay">
           <button class="inquire-btn" onclick="event.stopPropagation(); openProductModal('${p.name}')">View Specs</button>
         </div>
+        <div class="import-origin-badge">🇺🇿 Uzbekistan</div>
       </div>
       <div class="product-card-info" onclick="openProductModal('${p.name}')">
         <h3 style="cursor: pointer;">${p.name}</h3>
@@ -415,12 +627,13 @@ function renderProducts(filter = 'all') {
 
 if (grid) renderProducts();
 
-/* Filter tabs */
-document.querySelectorAll('.filter-tab').forEach(tab => {
+
+/* Filter tabs — context aware (export vs import) */
+document.querySelectorAll('#exportFilters .filter-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('#exportFilters .filter-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    const currentView = document.getElementById('btnGridView').classList.contains('active') ? 'grid' : 'calendar';
+    const currentView = document.getElementById('btnGridView')?.classList.contains('active') ? 'grid' : 'calendar';
     if (currentView === 'grid') {
       renderProducts(tab.dataset.filter);
     } else {
@@ -428,6 +641,7 @@ document.querySelectorAll('.filter-tab').forEach(tab => {
     }
   });
 });
+
 
 /* ============================================
    B2B SEASONALITY CALENDAR MATRIX GENERATION
@@ -1222,3 +1436,176 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+
+/* ============================================
+   EXPORT / IMPORT PRODUCT TAB SWITCHING
+   ============================================ */
+let currentProductSection = 'export';
+
+function renderImportProducts(filter = 'all') {
+  const importGrid = document.getElementById('importGrid');
+  if (!importGrid) return;
+  const filtered = filter === 'all' ? importProducts : importProducts.filter(p => p.category === filter);
+  importGrid.innerHTML = '';
+  filtered.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'product-card reveal import-product-card';
+    card.style.transitionDelay = `${i * 0.05}s`;
+    card.innerHTML = `
+      <div class="product-card-img" onclick="openImportModal('${p.name}')">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <div class="product-card-overlay">
+          <button class="inquire-btn" onclick="event.stopPropagation(); openImportModal('${p.name}')">View Specs</button>
+        </div>
+        <div class="import-origin-badge">${p.origin}</div>
+      </div>
+      <div class="product-card-info" onclick="openImportModal('${p.name}')">
+        <h3 style="cursor:pointer;">${p.name}</h3>
+        <span class="product-tag">${p.tag}</span>
+      </div>
+    `;
+    importGrid.appendChild(card);
+  });
+  observeReveals();
+}
+
+function openImportModal(name) {
+  const p = importProducts.find(prod => prod.name === name);
+  if (!p) return;
+  const imgEl = document.getElementById('modalProductImg');
+  const videoEl = document.getElementById('modalProductVideo');
+  if (videoEl) { videoEl.style.display = 'none'; videoEl.pause(); videoEl.src = ''; }
+  imgEl.style.display = 'block';
+  imgEl.src = p.img;
+  document.getElementById('modalProductName').textContent = p.name;
+  document.getElementById('modalProductSeason').textContent = p.tag + ' · ' + p.origin;
+  document.getElementById('modalSpecCaliber').textContent = p.caliber;
+  document.getElementById('modalSpecPackaging').textContent = p.packaging;
+  document.getElementById('modalSpecTemp').textContent = p.temp;
+  document.getElementById('modalSpecCapacity').textContent = p.capacity;
+  document.getElementById('modalSpecShelfLife').textContent = p.shelflife;
+  document.getElementById('modalCtaProductName').textContent = p.name;
+  const productModal = document.getElementById('productModal');
+  if (productModal) {
+    productModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function switchProductSection(section) {
+  currentProductSection = section;
+  const exportGrid = document.getElementById('productsGrid');
+  const importGrid = document.getElementById('importGrid');
+  const exportFilters = document.getElementById('exportFilters');
+  const importFilters = document.getElementById('importFilters');
+  const tabExport = document.getElementById('tabExport');
+  const tabImport = document.getElementById('tabImport');
+  const viewToggle = document.querySelector('.view-toggle-container');
+
+  if (section === 'export') {
+    if (exportGrid) exportGrid.style.display = '';
+    if (importGrid) importGrid.style.display = 'none';
+    if (exportFilters) exportFilters.style.display = '';
+    if (importFilters) importFilters.style.display = 'none';
+    if (tabExport) tabExport.classList.add('active');
+    if (tabImport) tabImport.classList.remove('active');
+    if (viewToggle) viewToggle.style.display = '';
+  } else {
+    if (exportGrid) exportGrid.style.display = 'none';
+    if (importGrid) importGrid.style.display = '';
+    if (exportFilters) exportFilters.style.display = 'none';
+    if (importFilters) importFilters.style.display = '';
+    if (tabExport) tabExport.classList.remove('active');
+    if (tabImport) tabImport.classList.add('active');
+    if (viewToggle) viewToggle.style.display = 'none';
+    renderImportProducts();
+  }
+}
+
+// Set up section tab listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const tabExport = document.getElementById('tabExport');
+  const tabImport = document.getElementById('tabImport');
+  if (tabExport) tabExport.addEventListener('click', () => switchProductSection('export'));
+  if (tabImport) tabImport.addEventListener('click', () => switchProductSection('import'));
+
+  // Import filter tabs
+  const importFilters = document.getElementById('importFilters');
+  if (importFilters) {
+    importFilters.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        importFilters.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderImportProducts(tab.dataset.filter);
+      });
+    });
+  }
+
+  // Hero import button
+  const heroImportBtn = document.getElementById('heroImportBtn');
+  if (heroImportBtn) {
+    heroImportBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelector('#products')?.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => switchProductSection('import'), 600);
+    });
+  }
+});
+
+/* ============================================
+   HOW WE TRADE TAB SWITCHING
+   ============================================ */
+function switchTradeTab(type) {
+  const exportWorkflow = document.getElementById('exportWorkflow');
+  const importWorkflow = document.getElementById('importWorkflow');
+  const exportTab = document.getElementById('tradeExportTab');
+  const importTab = document.getElementById('tradeImportTab');
+  if (type === 'export') {
+    if (exportWorkflow) exportWorkflow.style.display = '';
+    if (importWorkflow) importWorkflow.style.display = 'none';
+    if (exportTab) exportTab.classList.add('active');
+    if (importTab) importTab.classList.remove('active');
+  } else {
+    if (exportWorkflow) exportWorkflow.style.display = 'none';
+    if (importWorkflow) importWorkflow.style.display = '';
+    if (exportTab) exportTab.classList.remove('active');
+    if (importTab) importTab.classList.add('active');
+    observeReveals();
+  }
+}
+
+/* ============================================
+   FAQ ACCORDION
+   ============================================ */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+  // Close all open items in same group
+  btn.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').style.maxHeight = '0';
+    el.querySelector('.faq-question').classList.remove('active');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    btn.classList.add('active');
+  }
+}
+
+/* ============================================
+   CONTACT INQUIRY TYPE SELECTOR
+   ============================================ */
+function selectInquiryType(type) {
+  document.querySelectorAll('.inquiry-type-btn').forEach(btn => btn.classList.remove('active'));
+  const btn = document.getElementById(type === 'export' ? 'inquiryExport' : 'inquiryImport');
+  if (btn) btn.classList.add('active');
+  // Update the product select if it exists
+  const productSelect = document.getElementById('productInterest');
+  if (productSelect) {
+    // Re-filter options based on type (optional UX enhancement)
+    const hiddenInput = document.getElementById('inquiryTypeField');
+    if (hiddenInput) hiddenInput.value = type;
+  }
+}
