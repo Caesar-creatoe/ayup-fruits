@@ -2652,3 +2652,86 @@ body {
   color: rgba(255,234,176,0.65);
   font-size: 0.76rem;
 }
+
+/* ================================================
+   LOGISTICS PREVIEW (HOMEPAGE)
+   ================================================ */
+.logistics-preview-content {
+  position: relative;
+  z-index: 2;
+}
+.logistics-preview-img-wrapper {
+  width: 100%;
+  height: 450px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: -60px; /* pull cards up over the image */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+.logistics-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.logistics-preview-img-wrapper:hover .logistics-preview-img {
+  transform: scale(1.05);
+}
+.logistics-preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--green) 0%, transparent 60%);
+}
+.logistics-preview-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 10;
+  padding: 0 40px;
+}
+.lp-card {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232,160,48,0.2);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.lp-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(232,160,48,0.5);
+}
+.lp-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 10px rgba(232,160,48,0.3));
+}
+.lp-card h4 {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+.lp-card p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+@media (max-width: 992px) {
+  .logistics-preview-cards {
+    grid-template-columns: 1fr;
+    padding: 0;
+    margin-top: 30px;
+  }
+  .logistics-preview-img-wrapper {
+    margin-bottom: 0;
+    height: 300px;
+  }
+  .logistics-preview-overlay {
+    background: linear-gradient(to top, var(--green) 0%, transparent 80%);
+  }
+}
