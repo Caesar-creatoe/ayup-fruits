@@ -153,150 +153,200 @@
       </div>
     </section>
 
-    <!-- SECTION 3: CARGO CAPACITY VISUALIZATION -->
+    <!-- SECTION 3: CARGO CAPACITY -->
     <section class="capacity-section">
       <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div class="capacity-header">
           <span class="section-eyebrow">Order Volumes</span>
-          <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px;">How Much Can You Order?</h2>
-          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.8);">We deliver your order in our own trucks — here's a guide to typical shipment volumes so you can plan your purchase accordingly.</p>
+          <h2>How Much Can You Order?</h2>
+          <p>We deliver in our own trucks — choose the volume that fits your business needs.</p>
         </div>
 
-        <div class="capacity-grid">
-          <div class="capacity-card">
-            <div class="capacity-icon">🚚</div>
-            <div class="capacity-tonnage">5-10<span style="font-size: 50%; color: var(--logistics-gold);">Tons</span></div>
-            <div class="capacity-title">Small Order</div>
-            <div class="capacity-desc">Perfect for initial trial orders or targeted product shipments.</div>
+        <div class="capacity-grid-v2">
+
+          <div class="cap-card">
+            <div class="cap-card-inner">
+              <div class="cap-num">01</div>
+              <div class="cap-icon-wrap">🚚</div>
+              <div class="cap-range">5 – 10 <span>Tons</span></div>
+              <div class="cap-label">Small Order</div>
+              <div class="cap-desc">Ideal for trial orders and targeted product deliveries to new markets.</div>
+              <div class="cap-fill" style="--fill-pct: 30%"></div>
+            </div>
           </div>
-          
-          <div class="capacity-card">
-            <div class="capacity-icon">🚛</div>
-            <div class="capacity-tonnage">10-15<span style="font-size: 50%; color: var(--logistics-gold);">Tons</span></div>
-            <div class="capacity-title">Medium Order</div>
-            <div class="capacity-desc">Ideal for regular import clients and weekly replenishment.</div>
+
+          <div class="cap-card">
+            <div class="cap-card-inner">
+              <div class="cap-num">02</div>
+              <div class="cap-icon-wrap">🚛</div>
+              <div class="cap-range">10 – 15 <span>Tons</span></div>
+              <div class="cap-label">Medium Order</div>
+              <div class="cap-desc">Perfect for regular import clients with weekly or bi-weekly replenishment cycles.</div>
+              <div class="cap-fill" style="--fill-pct: 55%"></div>
+            </div>
           </div>
-          
-          <div class="capacity-card">
-            <div class="capacity-icon">🏭</div>
-            <div class="capacity-tonnage">20-24<span style="font-size: 50%; color: var(--logistics-gold);">Tons</span></div>
-            <div class="capacity-title">Full Truckload</div>
-            <div class="capacity-desc">Full truck of Ayup Fruits produce. Best price per kg.</div>
+
+          <div class="cap-card cap-card--featured">
+            <div class="cap-card-inner">
+              <div class="cap-badge">Most Popular</div>
+              <div class="cap-num">03</div>
+              <div class="cap-icon-wrap">🏭</div>
+              <div class="cap-range">20 – 24 <span>Tons</span></div>
+              <div class="cap-label">Full Truckload</div>
+              <div class="cap-desc">Maximum volume per truck. Best cost per kg. Preferred by large wholesalers.</div>
+              <div class="cap-fill" style="--fill-pct: 100%"></div>
+            </div>
           </div>
-          
-          <div class="capacity-card">
-            <div class="capacity-icon">❄️</div>
-            <div class="capacity-tonnage">20-22<span style="font-size: 50%; color: var(--logistics-gold);">Tons</span></div>
-            <div class="capacity-title">Reefer Truckload</div>
-            <div class="capacity-desc">Full reefer truck for fresh, temperature-sensitive produce.</div>
+
+          <div class="cap-card">
+            <div class="cap-card-inner">
+              <div class="cap-num">04</div>
+              <div class="cap-icon-wrap">❄️</div>
+              <div class="cap-range">20 – 22 <span>Tons</span></div>
+              <div class="cap-label">Reefer Truckload</div>
+              <div class="cap-desc">Full reefer truck for fresh, temperature-sensitive fruits and vegetables.</div>
+              <div class="cap-fill" style="--fill-pct: 90%"></div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: HOW WE MOVE YOUR CARGO -->
+    <!-- SECTION 4: HOW WE DELIVER -->
     <section class="process-section">
       <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div class="capacity-header" style="color: var(--logistics-green);">
           <span class="section-eyebrow">From Farm to You</span>
-          <h2>How Your Order Gets Delivered</h2>
+          <h2 style="color: var(--logistics-green);">How Your Order Gets Delivered</h2>
+          <p style="color: #666;">Five simple steps from your inquiry to fresh produce at your warehouse.</p>
         </div>
 
-        <div class="process-timeline">
-          <div class="process-truck-anim">🚛</div>
-          
-          <div class="process-step">
-            <div class="step-dot"></div>
-            <h4>1. You Place an Order</h4>
-            <p>Contact us with the product, quantity and destination. We confirm availability and price within 24 hours.</p>
+        <div class="process-steps-grid">
+
+          <div class="pstep">
+            <div class="pstep-number">01</div>
+            <div class="pstep-icon">📞</div>
+            <div class="pstep-connector"></div>
+            <h4>You Place an Order</h4>
+            <p>Contact us with product, quantity and destination. We confirm availability and price within 24 hours.</p>
           </div>
-          
-          <div class="process-step">
-            <div class="step-dot"></div>
-            <h4>2. Harvest & Packing</h4>
-            <p>Our fruits are freshly harvested, quality-checked and packed to your specification at our facility.</p>
+
+          <div class="pstep">
+            <div class="pstep-number">02</div>
+            <div class="pstep-icon">🌿</div>
+            <div class="pstep-connector"></div>
+            <h4>Harvest &amp; Packing</h4>
+            <p>Our fruits are freshly harvested, quality-inspected and packed to your specification.</p>
           </div>
-          
-          <div class="process-step">
-            <div class="step-dot"></div>
-            <h4>3. Loading & Export Docs</h4>
-            <p>We load the produce into our own trucks and prepare all phytosanitary and customs documents.</p>
+
+          <div class="pstep">
+            <div class="pstep-number">03</div>
+            <div class="pstep-icon">📦</div>
+            <div class="pstep-connector"></div>
+            <h4>Loading &amp; Docs</h4>
+            <p>Produce is loaded into our trucks. All phytosanitary certificates and customs documents are prepared.</p>
           </div>
-          
-          <div class="process-step">
-            <div class="step-dot"></div>
-            <h4>4. Border Crossing</h4>
-            <p>Our team manages international transit and border procedures so you don't have to.</p>
+
+          <div class="pstep">
+            <div class="pstep-number">04</div>
+            <div class="pstep-icon">🛃</div>
+            <div class="pstep-connector"></div>
+            <h4>Border Crossing</h4>
+            <p>Our team handles international transit and border procedures so you don't have to.</p>
           </div>
-          
-          <div class="process-step">
-            <div class="step-dot"></div>
-            <h4>5. Delivered to You</h4>
-            <p>Fresh Ayup Fruits produce arrives at your warehouse, on time and in perfect condition.</p>
+
+          <div class="pstep pstep--last">
+            <div class="pstep-number">05</div>
+            <div class="pstep-icon">🏪</div>
+            <h4>Delivered to You</h4>
+            <p>Fresh produce arrives at your warehouse on time and in perfect condition.</p>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- SECTION 5: LOGISTICS NETWORK -->
+    <!-- SECTION 5: DELIVERY COVERAGE -->
     <section class="network-section">
       <div class="container">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-          <span class="section-eyebrow">Delivery Coverage</span>
+        <div class="network-header">
+          <span class="section-eyebrow" style="color: var(--logistics-gold);">Delivery Coverage</span>
           <h2>We Deliver Across Borders</h2>
-          <p style="font-size: 1.1rem; color: #555;">Our own transport fleet delivers Ayup Fruits products directly from Uzbekistan to clients across Europe, the Middle East, Asia and beyond. Wherever you are, we bring our fresh produce to you.</p>
+          <p>Our own transport fleet delivers Ayup Fruits products directly from Uzbekistan to clients across Europe, the Middle East, Asia and beyond.</p>
         </div>
 
-        <div class="network-grid">
-          <div class="network-corridors">
-            <div class="corridor-item">
-              <span class="corridor-icon">🇪🇺</span>
-              <span>We deliver to Europe</span>
+        <div class="network-layout">
+
+          <div class="network-destinations">
+            <div class="dest-card">
+              <div class="dest-flag">🇪🇺</div>
+              <div class="dest-info">
+                <div class="dest-name">Europe</div>
+                <div class="dest-detail">Germany, Poland, Netherlands, Czech Republic &amp; more</div>
+              </div>
+              <div class="dest-arrow">→</div>
             </div>
-            <div class="corridor-item">
-              <span class="corridor-icon">🇹🇷</span>
-              <span>We deliver to Turkey</span>
+            <div class="dest-card">
+              <div class="dest-flag">🇹🇷</div>
+              <div class="dest-info">
+                <div class="dest-name">Turkey</div>
+                <div class="dest-detail">Istanbul, Ankara and major distribution hubs</div>
+              </div>
+              <div class="dest-arrow">→</div>
             </div>
-            <div class="corridor-item">
-              <span class="corridor-icon">🇦🇪</span>
-              <span>We deliver to Middle East & Gulf</span>
+            <div class="dest-card">
+              <div class="dest-flag">🇦🇪</div>
+              <div class="dest-info">
+                <div class="dest-name">Middle East &amp; Gulf</div>
+                <div class="dest-detail">UAE, Saudi Arabia, Qatar, Kuwait, Bahrain</div>
+              </div>
+              <div class="dest-arrow">→</div>
             </div>
-            <div class="corridor-item">
-              <span class="corridor-icon">🌏</span>
-              <span>We deliver to Central & East Asia</span>
+            <div class="dest-card">
+              <div class="dest-flag">🌏</div>
+              <div class="dest-info">
+                <div class="dest-name">Central &amp; East Asia</div>
+                <div class="dest-detail">Kazakhstan, China and regional markets</div>
+              </div>
+              <div class="dest-arrow">→</div>
             </div>
-            <div class="corridor-item">
-              <span class="corridor-icon">🌍</span>
-              <span>Ask us about your destination</span>
+            <div class="dest-card dest-card--cta">
+              <div class="dest-flag">✉️</div>
+              <div class="dest-info">
+                <div class="dest-name">Your Destination?</div>
+                <div class="dest-detail">Ask us — we can discuss your specific route</div>
+              </div>
+              <a href="/#contact" class="dest-btn">Ask Us</a>
             </div>
           </div>
-          
-          <div class="network-map-visual">
-            <!-- Decorative Map Concept -->
-            <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width: 350px;">
-              <!-- Central node (Uzbekistan) -->
-              <circle cx="200" cy="150" r="10" fill="#E8A030" />
-              <circle cx="200" cy="150" r="20" stroke="#E8A030" stroke-width="2" stroke-dasharray="4 4" opacity="0.5" />
-              <text x="200" y="180" text-anchor="middle" fill="#0A1C12" font-weight="bold" font-family="Inter">Uzbekistan Origin</text>
-              
-              <!-- Corridors -->
-              <path d="M200 150 Q120 80 50 100" stroke="#0A1C12" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8" />
-              <circle cx="50" cy="100" r="6" fill="#0A1C12" />
-              <text x="40" y="90" fill="#555" font-size="12" font-family="Inter">Europe</text>
-              
-              <path d="M200 150 Q280 80 350 100" stroke="#0A1C12" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8" />
-              <circle cx="350" cy="100" r="6" fill="#0A1C12" />
-              <text x="360" y="90" fill="#555" font-size="12" font-family="Inter">Asia</text>
-              
-              <path d="M200 150 Q150 220 100 250" stroke="#0A1C12" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8" />
-              <circle cx="100" cy="250" r="6" fill="#0A1C12" />
-              <text x="80" y="270" fill="#555" font-size="12" font-family="Inter">Turkey</text>
-              
-              <path d="M200 150 Q250 220 300 250" stroke="#0A1C12" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8" />
-              <circle cx="300" cy="250" r="6" fill="#0A1C12" />
-              <text x="320" y="270" fill="#555" font-size="12" font-family="Inter">Middle East</text>
-            </svg>
+
+          <div class="network-stats-panel">
+            <div class="nsp-title">Our Delivery Reach</div>
+            <div class="nsp-big">32<span>+</span></div>
+            <div class="nsp-sub">Countries served</div>
+            <div class="nsp-divider"></div>
+            <div class="nsp-items">
+              <div class="nsp-item">
+                <div class="nsp-dot"></div>
+                <span>Road transport via Central Asia corridors</span>
+              </div>
+              <div class="nsp-item">
+                <div class="nsp-dot"></div>
+                <span>Air freight for time-sensitive deliveries</span>
+              </div>
+              <div class="nsp-item">
+                <div class="nsp-dot"></div>
+                <span>Sea freight for large volumes to Asia</span>
+              </div>
+              <div class="nsp-item">
+                <div class="nsp-dot"></div>
+                <span>Rail freight on China-Europe corridor</span>
+              </div>
+            </div>
+            <a href="/#contact" class="btn-primary" style="margin-top: 30px; display: inline-block; font-size: 0.9rem; padding: 12px 28px;">Request a Delivery Quote</a>
           </div>
+
         </div>
       </div>
     </section>

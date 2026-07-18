@@ -197,248 +197,459 @@ body {
 }
 
 /* ================================================
-   SECTION 3: CARGO CAPACITY VISUALIZATION
+   SECTION 3: CAPACITY — PREMIUM REDESIGN
    ================================================ */
 .capacity-section {
   padding: 100px 0;
   background: var(--logistics-green);
   color: #fff;
-}
-
-.capacity-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 50px;
-}
-
-.capacity-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(232,160,48,0.15);
-  border-radius: 20px;
-  padding: 30px 20px;
-  text-align: center;
-  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.capacity-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(232,160,48,0.4);
-  background: rgba(255,255,255,0.05);
-}
-
-.capacity-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 4px 10px rgba(232,160,48,0.2));
-  flex-grow: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.capacity-tonnage {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.capacity-title {
-  color: var(--logistics-gold);
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.capacity-desc {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.5;
-}
-
-/* Scaling the icons to show visual size difference */
-.capacity-card:nth-child(1) .capacity-icon { font-size: 2.5rem; }
-.capacity-card:nth-child(2) .capacity-icon { font-size: 3.5rem; }
-.capacity-card:nth-child(3) .capacity-icon { font-size: 4.5rem; }
-.capacity-card:nth-child(4) .capacity-icon { font-size: 4.5rem; }
-
-@media (max-width: 992px) {
-  .capacity-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .capacity-grid {
-    grid-template-columns: 1fr;
-  }
-  .capacity-icon { min-height: 80px; }
-}
-
-/* ================================================
-   SECTION 4: PROCESS TIMELINE
-   ================================================ */
-.process-section {
-  padding: 100px 0;
-  background-color: #fff;
-  color: #333;
   overflow: hidden;
 }
 
-.process-timeline {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  margin-top: 80px;
-  padding-top: 40px;
-}
-
-.process-timeline::before {
+.capacity-section::before {
   content: '';
   position: absolute;
-  top: 15px;
-  left: 0;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(232,160,48,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.capacity-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 60px;
+}
+
+.capacity-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin: 10px 0 14px;
+}
+
+.capacity-header p {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+}
+
+.capacity-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cap-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+}
+
+.cap-card:hover { transform: translateY(-10px); }
+
+.cap-card-inner {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(232,160,48,0.15);
+  border-radius: 20px;
+  padding: 28px 22px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.cap-card:hover .cap-card-inner {
+  border-color: rgba(232,160,48,0.45);
+  background: rgba(255,255,255,0.06);
+}
+
+.cap-card--featured .cap-card-inner {
+  background: rgba(232,160,48,0.1);
+  border-color: rgba(232,160,48,0.5);
+}
+
+.cap-badge {
+  display: inline-block;
+  background: var(--logistics-gold);
+  color: #0A1C12;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
+.cap-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(232,160,48,0.4);
+  letter-spacing: 0.15em;
+  margin-bottom: 14px;
+}
+
+.cap-icon-wrap {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 12px rgba(232,160,48,0.25));
+}
+
+.cap-range {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.cap-range span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--logistics-gold);
+  margin-left: 4px;
+}
+
+.cap-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--logistics-gold);
+  margin-bottom: 14px;
+}
+
+.cap-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  flex-grow: 1;
+  margin-bottom: 18px;
+}
+
+.cap-fill {
   width: 100%;
   height: 4px;
-  background: rgba(10,28,18,0.1);
+  background: rgba(255,255,255,0.08);
   border-radius: 2px;
-  z-index: 1;
-}
-
-.process-truck-anim {
-  position: absolute;
-  top: 1px;
-  left: -5%;
-  font-size: 2rem;
-  z-index: 2;
-  animation: driveTruck 12s infinite linear;
-}
-
-@keyframes driveTruck {
-  0% { left: -5%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: 105%; opacity: 0; }
-}
-
-.process-step {
-  flex: 1;
-  text-align: center;
   position: relative;
-  z-index: 3;
-  padding: 0 15px;
+  overflow: hidden;
 }
 
-.step-dot {
-  width: 24px;
-  height: 24px;
-  background: var(--logistics-green);
-  border: 4px solid #fff;
-  border-radius: 50%;
-  margin: -52px auto 20px;
-  box-shadow: 0 0 0 4px rgba(10,28,18,0.1);
+.cap-fill::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  width: var(--fill-pct);
+  background: linear-gradient(90deg, var(--logistics-gold), #f5c842);
+  border-radius: 2px;
+  transition: width 0.8s ease;
 }
 
-.process-step h4 {
-  font-size: 1.1rem;
-  color: var(--logistics-green);
-  margin-bottom: 10px;
+@media (max-width: 992px) {
+  .capacity-grid-v2 { grid-template-columns: repeat(2, 1fr); }
 }
-
-.process-step p {
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .process-timeline {
-    flex-direction: column;
-    padding-top: 0;
-    margin-top: 40px;
-  }
-  .process-timeline::before {
-    top: 0;
-    left: 20px;
-    width: 4px;
-    height: 100%;
-  }
-  .process-truck-anim {
-    display: none;
-  }
-  .process-step {
-    display: flex;
-    text-align: left;
-    margin-bottom: 30px;
-    padding: 0;
-  }
-  .step-dot {
-    margin: 0 20px 0 10px;
-  }
+@media (max-width: 576px) {
+  .capacity-grid-v2 { grid-template-columns: 1fr; }
 }
 
 /* ================================================
-   SECTION 5: LOGISTICS NETWORK
+   SECTION 4: PROCESS STEPS — PREMIUM REDESIGN
+   ================================================ */
+.process-section {
+  padding: 100px 0;
+  background: #f8f9f5;
+  color: #333;
+}
+
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 60px;
+  position: relative;
+}
+
+/* connecting line across the top */
+.process-steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 56px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(10,28,18,0.12) 10%, rgba(10,28,18,0.12) 90%, transparent);
+  z-index: 0;
+}
+
+.pstep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.pstep-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: rgba(10,28,18,0.25);
+  margin-bottom: 10px;
+}
+
+.pstep-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: #fff;
+  border: 2px solid rgba(10,28,18,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(10,28,18,0.07);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pstep:hover .pstep-icon {
+  border-color: rgba(10,28,18,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(10,28,18,0.12);
+}
+
+.pstep h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--logistics-green);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.pstep p {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.55;
+}
+
+.pstep--last .pstep-icon {
+  background: var(--logistics-green);
+  border-color: var(--logistics-green);
+  font-size: 1.6rem;
+}
+
+@media (max-width: 900px) {
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .process-steps-grid::before { display: none; }
+  .pstep {
+    flex-direction: row;
+    text-align: left;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(10,28,18,0.06);
+    align-items: flex-start;
+  }
+  .pstep-icon { flex-shrink: 0; margin-bottom: 0; }
+  .pstep-number { margin-bottom: 0; }
+}
+
+/* ================================================
+   SECTION 5: NETWORK — PREMIUM REDESIGN
    ================================================ */
 .network-section {
   padding: 100px 0;
-  background-color: var(--logistics-light);
-  color: #333;
+  background: var(--logistics-green);
+  color: #fff;
 }
-.network-grid {
+
+.network-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 60px;
+}
+
+.network-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin: 10px 0 14px;
+}
+
+.network-header p {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.network-layout {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 50px;
-  align-items: center;
-  margin-top: 50px;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: start;
 }
-.network-corridors {
+
+/* Destination cards */
+.network-destinations {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
-.corridor-item {
+
+.dest-card {
   display: flex;
   align-items: center;
-  background: #fff;
+  gap: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
   padding: 16px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  border-left: 4px solid var(--logistics-gold);
-  transition: transform 0.3s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  cursor: default;
 }
-.corridor-item:hover {
-  transform: translateX(10px);
+
+.dest-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(232,160,48,0.3);
+  transform: translateX(6px);
 }
-.corridor-icon {
-  font-size: 1.5rem;
-}
-.corridor-item span {
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-left: 15px;
-  color: var(--logistics-green);
-}
-.network-map-visual {
-  width: 100%;
-  background: #fff;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+
+.dest-flag {
+  font-size: 2rem;
+  flex-shrink: 0;
+  width: 50px;
   text-align: center;
 }
-@media (max-width: 992px) {
-  .network-grid {
-    grid-template-columns: 1fr;
-  }
+
+.dest-info { flex: 1; }
+
+.dest-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.dest-detail {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.dest-arrow {
+  font-size: 1.2rem;
+  color: rgba(232,160,48,0.5);
+  flex-shrink: 0;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.dest-card:hover .dest-arrow {
+  color: var(--logistics-gold);
+  transform: translateX(4px);
+}
+
+.dest-card--cta {
+  border-color: rgba(232,160,48,0.25);
+  background: rgba(232,160,48,0.05);
+}
+
+.dest-btn {
+  display: inline-block;
+  background: var(--logistics-gold);
+  color: var(--logistics-green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.dest-btn:hover {
+  background: #f5c842;
+  transform: scale(1.04);
+}
+
+/* Stats panel */
+.network-stats-panel {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(232,160,48,0.2);
+  border-radius: 24px;
+  padding: 36px 30px;
+  backdrop-filter: blur(8px);
+}
+
+.nsp-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--logistics-gold);
+  margin-bottom: 10px;
+}
+
+.nsp-big {
+  font-family: 'Outfit', sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.nsp-big span {
+  color: var(--logistics-gold);
+}
+
+.nsp-sub {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+}
+
+.nsp-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin-bottom: 20px;
+}
+
+.nsp-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nsp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.nsp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--logistics-gold);
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 
 /* ================================================
@@ -446,8 +657,8 @@ body {
    ================================================ */
 .cold-chain-section {
   padding: 100px 0;
-  background-color: var(--logistics-green);
-  color: #fff;
+  background-color: #f8f9f5;
+  color: #333;
 }
 .cold-chain-grid {
   display: grid;
@@ -455,18 +666,34 @@ body {
   gap: 60px;
   align-items: center;
 }
+.cold-chain-section .section-eyebrow {
+  color: var(--logistics-gold);
+}
+.cold-chain-section h2 {
+  color: var(--logistics-green);
+}
+.cold-chain-section p {
+  color: #555;
+}
+.cold-chain-section li {
+  color: #444;
+}
 .cold-chain-img {
   width: 100%;
   border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 .logistics-cta-section {
   padding: 100px 0;
-  background: #fff;
+  background: var(--logistics-green);
   text-align: center;
 }
 @media (max-width: 992px) {
   .cold-chain-grid {
     grid-template-columns: 1fr;
   }
+  .network-layout {
+    grid-template-columns: 1fr;
+  }
 }
+
