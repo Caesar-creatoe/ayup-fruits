@@ -1352,7 +1352,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const href = this.href || '';
       // Detect which number/department
       let department = 'unknown';
-      if (href.includes('4915215699662')) {
+      if (href.includes('998946500421')) {
         department = 'EU Sales (+49)';
         if (href.includes('importing%20fruits') || href.includes('interested')) {
           department = 'Export Division';
